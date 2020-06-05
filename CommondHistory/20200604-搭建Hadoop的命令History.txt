@@ -1,0 +1,173 @@
+# in all node
+ls -lrth
+tar -zxvf jdk-8u241-linux-x64.tar.gz
+sudo mv jdk1.8.0_241/ /opt/
+
+vi ~/.bash_profile
+export JAVA_HOME=/opt/jdk1.8.0_241
+export PATH=$JAVA_HOME/bin:$PATH
+
+source ~/.bash_profile
+java -version
+#==================================
+# in node-master
+sudo vi /etc/hostname
+node-master
+
+# in node1
+sudo vi /etc/hostname
+node1
+
+# in node2
+sudo vi /etc/hostname
+node2
+
+# in all node
+# x3 times the following
+sudo vi /etc/hosts
+192.168.101.48 node-master
+192.168.101.49 node1
+192.168.101.50 node2
+#=================================
+# in node-master
+cd ~/.ssh
+ls -lrt
+ssh-keygen -b 4096
+ls -lrt
+
+ssh-copy-id -i $HOME/.ssh/id_rsa.pub suncaper@node1
+ssh-copy-id -i $HOME/.ssh/id_rsa.pub suncaper@node2
+#=================================
+# in node-master
+# 在一台机器上安装再去拷贝到其他机器上
+tar -zxvf hadoop-2.9.2.tar.gz
+sudo mv hadoop-2.9.2 /opt/
+
+vi ~/.bash_profile
+# 添加
+export HADOOP_HOME=/opt/hadoop-2.9.2
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+
+source ~/.bash_profile
+
+hadoop version
+#=================================
+# in node-master
+cd $HADOOP_HOME
+cd etc/hadoop/
+ls -lrt
+
+# 对core-site.xml在<configuration></configuration>中配置
+vi core-site.xml
+<property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://node-master:9000</value>
+</property>
+
+vi hdfs-site.xml
+<property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/home/suncaper/data/nn</value>
+</property>
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/home/suncaper/data/dn</value>
+</property>
+<property>
+    <name>dfs.replication</name>
+    <value>2</value>
+</property>
+
+mkdir -p /home/suncaper/data/nn
+mkdir -p /home/suncaper/data/dn
+
+cp mapred-site.xml.template mapred-site.xml
+
+vi mapred-site.xml
+<!-- 指定MR运行在Yarn上 -->
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+
+vi yarn-site.xml
+<!--关闭acl权限验证-->
+<property>
+    <name>yarn.acl.enable</name>
+    <value>0</value>
+</property>
+<!-- 指定YARN的ResourceManager的地址 -->
+<property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>node-master</value>
+</property>
+<!-- Reducer获取数据的方式 -->
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+</property>
+
+#=================================
+# in node-master
+echo $JAVA_HOME
+
+vi hadoop-env.sh
+#将行
+export JAVA_HOME=${JAVA_HOME}
+#更改为(和环境变量JAVA_HOME一样)
+export JAVA_HOME=/usr/local/jdk1.8.0_211/
+
+vi slaves
+node1
+node2
+#=================================
+# 复制文件到其他节点
+# in node1 in node2
+mkdir -p ~/data/nn
+mkdir -p ~/data/dn
+# 下面名字和node-master相同
+sudo mkdir /opt/hadoop-2.9.2
+cd ..
+# in /opt now
+ls -lrt
+sudo chown suncaper:suncaper /opt/hadoop-2.9.2/
+ls -lrt
+
+# in node-master
+cd $HADOOP_HOME
+ls -lrt
+scp -r /opt/hadoop-2.9.2/* suncaper@node1:/opt/hadoop-2.9.2
+scp -r /opt/hadoop-2.9.2/* suncaper@node2:/opt/hadoop-2.9.2
+
+# 把node-master中的 .bash_profile 中的下面两行拷贝到node1和node2
+# export HADOOP_HOME=/opt/hadoop-2.9.2
+# export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+vi ~/.bash_profile
+# do copy here to both node1 and node2
+
+#=================================
+# in node-master
+# 启动集群
+# now in data/nn
+# attention in this step!!!!!!
+hdfs namenode -format
+ls -lrt
+
+# in node-master
+# 启动HDFS
+cd current/
+# now in data/nn/current
+start-dfs.sh
+# 可访问node-master:50070
+
+# in node-master in node1 in node2
+jps
+
+# in node-master
+# 启动YARN集群
+# now in /opt/hadoop-2.9.2/etc/hadoop
+start-yarn.sh
+
+# in node-master in node1 in node2
+jps
+# 可访问node-master:8083

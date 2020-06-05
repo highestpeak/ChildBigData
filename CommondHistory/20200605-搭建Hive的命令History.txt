@@ -1,0 +1,154 @@
+#==================================
+# in node-master
+# upload Hive to node-mnaster
+cd ~
+ls -lrt
+tar -zxvf apache-hive-1.2.2-bin.tar.gz 
+sudo mv apache-hive-1.2.2-bin /opt/
+cd /opt
+ls -lrt
+sudo mv apache-hive-1.2.2-bin/ apache-hive-1.2.2
+
+cd apache-hive-1.2.2/
+cd conf
+
+cp hive-default.xml.template hive-site.xml
+vi hive-site.xml
+# in <configration>
+
+cp hive-env.sh.template hive-env.sh
+vi hive-env.sh
+#修改以下内容 分别使用"echo $HADOOP_HOME"和"cd /opt/apache-hive-1.2.2/conf"+"pwd"查看
+export HADOOP_HOME=/opt/hadoop-2.9.2
+export HIVE_CONF_DIR=/opt/apache-hive-1.2.2/conf
+
+# jps 确保hadoop HDFS和yarn已启动
+hadoop fs -mkdir /tmp
+hadoop fs -mkdir -p /user/hive/warehouse
+hadoop fs -chmod g+w /tmp
+hadoop fs -chmod g+w /user/hive/warehouse
+
+cd ..
+# now in /opt/apache-hive-1.2.2/
+# 执行 bin/hive 出现异常显示没有配置的
+cd conf/
+ls
+rm hive-site.xml
+cd ..
+bin/hive
+
+#==================================
+# pratice in node-master hive
+# hive> 
+show databases;
+create database test;
+use test;
+show tables;
+create table stu(id int,name string);
+insert into stu value(1,'xiaoming');
+# we can see some jobs \ some mapduce job
+select * from stu;
+
+#==================================
+# 安装mysql以替换掉默认的存储引擎从而支持多用户使用（否则只能单用户使用）
+# 安装mysql服务器
+sudo apt-get install mysql-server
+# 管理员身份登录MySQL
+sudo mysql -u root -p
+# 改默认密码
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin';
+exit
+
+# 登录MySQL
+mysql -u root -p
+
+#配置远程登陆
+#更改文件
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+#将
+bind-address = 127.0.0.1
+#改为
+bind-address = 0.0.0.0
+
+#然后重启
+sudo systemctl restart mysql
+
+#下载mysql connector
+#now in /opt/apache-hive-1.2.2/lib
+cp ~/mysql-connector-java-5.1.40.jar .
+cd ..
+cd conf/
+# now in /opt/apache-hive-1.2.2/conf
+cp hive-default.xml.template hive-site.xml
+vi hive-site.xml
+# in <configuration>
+<configuration>
+    <property>
+      <name>javax.jdo.option.ConnectionURL</name>
+      <value>jdbc:mysql://localhost:3306/metastore?createDatabaseIfNotExist=true&amp;useSSL=false</value>
+      <description>JDBC connect string for a JDBC metastore</description>
+    </property>
+ 
+    <property>
+      <name>javax.jdo.option.ConnectionDriverName</name>
+      <value>com.mysql.jdbc.Driver</value>
+      <description>Driver class name for a JDBC metastore</description>
+    </property>
+ 
+    <property>
+      <name>javax.jdo.option.ConnectionUserName</name>
+      <value>root</value>
+      <description>username to use against metastore database</description>
+    </property>
+ 
+    <property>
+      <name>javax.jdo.option.ConnectionPassword</name>
+      <value>admin</value>
+      <description>password to use against metastore database</description>
+    </property>
+     
+    <!--添加如下两行-->
+    <property>
+    <name>system:java.io.tmpdir</name>
+    <value>/tmp/hive/java</value>
+    </property>
+    <property>
+    <name>system:user.name</name>
+    <value>${user.name}</value>
+    </property>
+</configuration>
+
+# 启动hive
+./bin/hive
+use metastore;
+show tables;
+exit;
+# 三台都可以访问hive就成功了
+quit;
+
+vi ~/.bash_profile
+export HIVE_HOME=/opt/apache-hive-1.2.2
+export PATH=$HIVE_HOME/bin:$PATH
+
+source ~/.bash_profile
+
+# 此时在任何地方都可启动hive
+
+#==================================
+# pratice in node-master hive
+# 命令方式
+hive
+
+# 脚本方式
+hive -e 'select * from test.student;'
+
+# jdbc方式
+hiveserver2
+
+# 在另一个窗口可以连接,如下
+beeline
+!connect jdbc:hive2://node-master:10000
+# jdbc:hive2://node-master:10000>
+show databases;
+
+#==================================
