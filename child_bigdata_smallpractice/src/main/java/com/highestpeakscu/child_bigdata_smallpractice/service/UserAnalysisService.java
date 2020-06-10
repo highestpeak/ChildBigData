@@ -148,7 +148,7 @@ public class UserAnalysisService {
 
         @Override
         Object querySituationSecond(Object queryValue) {
-            return userAnalysisMapper.selectTableWherePattern("before_gap col1",TABLE,"dt='"+queryValue+"'");
+            return userAnalysisMapper.selectTableWherePattern("before_gap col1,rate col2",TABLE,"dt='"+queryValue+"'");
         }
 
         @Override

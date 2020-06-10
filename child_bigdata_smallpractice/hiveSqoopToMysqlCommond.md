@@ -74,8 +74,8 @@ sqoop export --connect "jdbc:mysql://node-master:3306/big_practice?useUnicode=tr
   | type-value | `type` description | `certain_dt` description |
   | ---------- | ------------------ | ------------------------ |
   | 0          | 每天活跃           | 日期:`yyyy-MM-dd`        |
-  | 1          | 每周活跃           | 第几周                   |
-  | 2          | 每月活跃           | 第几月                   |
+  | 1          | 每周活跃           | 第几周: int              |
+  | 2          | 每月活跃           | 第几月: int              |
 
   
 
@@ -154,8 +154,8 @@ drop table tmp_active_count;
   | type-value | `type` description | `certain_dt` description |
   | ---------- | ------------------ | ------------------------ |
   | 0          | 每天新增           | 日期:`yyyy-MM-dd`        |
-  | 1          | 每周新增           | 第几周                   |
-  | 2          | 每月新增           | 第几月                   |
+  | 1          | 每周新增           | 第几周: int              |
+  | 2          | 每月新增           | 第几月: int              |
 
 ``` sql
 create table dws_user_new_count(
