@@ -13,7 +13,8 @@ import java.util.List;
 /**
  * @author highestpeak
  */
-@Controller
+@CrossOrigin(origins = "*")
+@RestController
 @RequestMapping("/api/user/")
 public class UserController {
     @Autowired
