@@ -14,12 +14,13 @@ public interface SupplierManageMapper {
     int addSupplier(String IATA, String ICAO, String name, String country, String area, String airline, String AirLineAlliance, String fleetsNum, String navigableCity, String discription, String wiki, String website);
 
     @Select({"SELECT ${selectCol} from ${table} where ${wherecase}"})
-    List<Map<String,String>> findSupplier(String selectCol, String table, String wherecase);
+    List<Map<String,String>> find(String selectCol, String table, String wherecase);
+
 
     @Delete("DELETE from ${table} where suppplier_id=${id}")
-    int deleteSUppplier(String table, int id);
+    int deleteSppplier(String table, int id);
 
     @Update({"UPDATE ${table} set IATA=${IATA},ICAO=${ICAO},name=${name},country=${country,area=${area},airline=${airline},AirLineAlliance=${AirLineAlliance},fleetsNum=${fleetsNum},navigableCity=${NavigableCity},description=${description},wiki=${wiki},website=${website}, where id=${supplier_id}"})
-    int Updatesuppplier(String IATA, String ICAO, String name, String country, String area, String airline, String AirLineAlliance, String fleetsNum, String navigableCity, String discription, String wiki, String website);
+    int UpdateSuppplier(String IATA, String ICAO, String name, String country, String area, String airline, String AirLineAlliance, String fleetsNum, String navigableCity, String discription, String wiki, String website);
 
 }
