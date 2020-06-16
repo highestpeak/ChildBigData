@@ -66,6 +66,20 @@ public class FlightService {
         return flightMapper.boundAirports(latitudeRange, longitudeRange, altitudeRange, builder.toString());
     }
 
+    public List<String> airportInArea(List<String> provinceList){
+        return provinceList.stream()
+                .flatMap(province->airportInArea(province).stream())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> airportInArea(String province){
+        return null;
+    }
+
+    public List<String> airportDistance(String airport,double kmDistance){
+        return null;
+    }
+
     private static Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap =
             new HashMap<FlightStrategy.STRATEGY, FlightStrategy>() {{
                 // 出发地、目的地、出发时间
@@ -140,7 +154,6 @@ public class FlightService {
         List<String[]> airportPair = startAirports.stream()
                 .flatMap(start -> endAirports.stream().map(end -> new String[]{start, end}))
                 .collect(Collectors.toList());
-
 
         // 直飞、往返、建议、转机x次 生成航班列表
         // collect FlightPlanList

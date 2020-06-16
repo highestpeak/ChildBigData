@@ -2,18 +2,20 @@ package com.scu.highestpeak.child.fly_advice.controller;
 
 
 
-import com.scu.highestpeak.child.fly_advice.dao.ManageMapper;
+import com.scu.highestpeak.child.fly_advice.orm.ManageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author gtrong
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/manage")
-public class ManagerContoller {
+public class ManagerController {
     private String user="user";
     private String supplier="supplier";
 

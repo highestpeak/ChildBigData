@@ -1,4 +1,4 @@
-package com.scu.highestpeak.child.fly_advice.dao;
+package com.scu.highestpeak.child.fly_advice.orm;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author gtrong
+ */
 @Mapper
 @Repository
-
 public interface ManageMapper {
 
     @Insert({"INSERT into supplier  values ('#{id}','${name)','#(distrust}')"})
@@ -41,7 +43,7 @@ public interface ManageMapper {
     int addHistory(int id,int plan_id,int plan_order,String cabin_class,int user_id,int flight_id,String flight_type,int supplier_id,int buy_date);
 
     @Delete({"Delete from user_history where id=#{id}"})
-    @ResponseBody
+//    @ResponseBody
     int deleteHistory(int id);
 
     @Select({"SELECT * from history_flight where id =#{id}"})

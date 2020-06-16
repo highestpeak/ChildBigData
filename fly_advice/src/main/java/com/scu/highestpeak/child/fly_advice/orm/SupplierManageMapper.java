@@ -1,4 +1,4 @@
-package com.scu.highestpeak.child.fly_advice.dao;
+package com.scu.highestpeak.child.fly_advice.orm;
 
 
 import org.apache.ibatis.annotations.*;
@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author gtrong
+ */
 @Mapper
 @Repository
 public interface SupplierManageMapper {

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * @author highestpeak
+ * todo
  */
 public class DefaultDirectStrategy implements FlightStrategy {
     @Override
