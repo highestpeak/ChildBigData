@@ -7,9 +7,14 @@ import java.util.Date;
 /**
  * @author highestpeak
  */
-public class StopSection extends AbstractFlightSection {
-    public StopSection(Integer order, @NotBlank String type, @NotNull Date startDate, @NotNull Date endDate,
-                       @NotBlank String startPlace, @NotBlank String endPlace, String description) {
-        super(order, type, startDate, endDate, startPlace, endPlace, description);
+public class StopSection extends AbstractFlightPlanSection {
+    private static final String SECTION_STOP_TYPE="stop";
+
+    private String place;
+
+    public StopSection(Integer order, String description, String place,
+                       @NotNull Date startTime, @NotNull Date endTime) {
+        super(order, SECTION_STOP_TYPE, startTime, endTime, description);
+        this.place = place;
     }
 }

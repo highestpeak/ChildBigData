@@ -1,5 +1,8 @@
 package com.scu.highestpeak.child.fly_advice;
 
+/**
+ * @author highestpeak
+ */
 public final class GlobalStaticFactory {
     /**
      * airport Contains Substr type

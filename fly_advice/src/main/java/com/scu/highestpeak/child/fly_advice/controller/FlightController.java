@@ -3,6 +3,7 @@ package com.scu.highestpeak.child.fly_advice.controller;
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
 import com.scu.highestpeak.child.fly_advice.domain.CABIN_CLASS;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
+import com.scu.highestpeak.child.fly_advice.domain.DTO.WhenFlyDTO;
 import com.scu.highestpeak.child.fly_advice.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -28,6 +29,11 @@ public class FlightController {
     public Object search(FlightSearchDTO flightSearchArgs) {
         // future: 使用 spring-boot-starter-validation 来构建联合验证
         return flightService.searchFlight(flightSearchArgs);
+    }
+
+    @GetMapping("/when")
+    public Object findWhenFly(WhenFlyDTO whenFlyDTO){
+        return null;
     }
 
     @GetMapping("/cabinClass")

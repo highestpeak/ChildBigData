@@ -12,8 +12,11 @@ import java.util.Date;
 public class FlightSearchDTO {
     @NotBlank(message = "必须提供出发地")
     private String startPlace;
+    private Boolean inboundAltEnabled;
+
     @NotBlank(message = "必须提供目的地")
     private String endPlace;
+    private Boolean outboundAltEnabled;
 
     @DateTimeFormat(pattern = "yyyyMMdd")
     @FutureOrPresent
@@ -27,15 +30,20 @@ public class FlightSearchDTO {
     private Date rtnDate;
 
     private Boolean preferDirects;
+    /**
+     * todo: 经停处理
+     */
     private Boolean preferStop;
-    private Boolean outboundAltEnabled;
-    private Boolean inboundAltEnabled;
+    /**
+     * todo: 暂时默认 转机一次
+     */
+    private Boolean preferTransfer;
 
     @Positive
     private Integer remainingVotes;
 
     public FlightSearchDTO(String startPlace, String endPlace, Date startDate, CABIN_CLASS cabinClass, boolean rtn,
-                           Date rtnDate, boolean preferDirects, boolean preferStop, boolean outboundAltEnabled,
+                           Date rtnDate, boolean preferDirects, boolean preferStop,boolean preferTransfer, boolean outboundAltEnabled,
                            boolean inboundAltEnabled, int remainingVotes) {
         if (startPlace.equals(endPlace)) {
             throw new RuntimeException("出发地和返回地不能相同");
@@ -60,6 +68,7 @@ public class FlightSearchDTO {
         this.rtnDate = rtnDate;
         this.preferDirects = preferDirects;
         this.preferStop = preferStop;
+        this.preferTransfer=preferTransfer;
         this.outboundAltEnabled = outboundAltEnabled;
         this.inboundAltEnabled = inboundAltEnabled;
         this.remainingVotes = remainingVotes;
@@ -72,6 +81,11 @@ public class FlightSearchDTO {
 
     public FlightSearchDTO setEndPlace(String endPlace) {
         this.endPlace = endPlace;
+        return this;
+    }
+
+    public FlightSearchDTO setStartDate(Date startDate) {
+        this.startDate = startDate;
         return this;
     }
 
@@ -91,12 +105,16 @@ public class FlightSearchDTO {
         return cabinClass;
     }
 
-    public Boolean getRtn() {
-        return rtn;
+    public Boolean getOutboundAltEnabled() {
+        return outboundAltEnabled;
     }
 
-    public Date getRtnDate() {
-        return rtnDate;
+    public Boolean getInboundAltEnabled() {
+        return inboundAltEnabled;
+    }
+
+    public Boolean getRtn() {
+        return rtn;
     }
 
     public Boolean getPreferDirects() {
@@ -107,16 +125,18 @@ public class FlightSearchDTO {
         return preferStop;
     }
 
-    public Boolean getOutboundAltEnabled() {
-        return outboundAltEnabled;
-    }
-
-    public Boolean getInboundAltEnabled() {
-        return inboundAltEnabled;
+    public Boolean getPreferTransfer() {
+        return preferTransfer;
     }
 
     public Integer getRemainingVotes() {
         return remainingVotes;
+    }
+
+    public void switchSourceDestination(){
+        String tmp=this.startPlace;
+        this.setStartPlace(endPlace);
+        this.setEndPlace(tmp);
     }
 
     @Override

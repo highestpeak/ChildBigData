@@ -5,6 +5,9 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author highestpeak
+ */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Override

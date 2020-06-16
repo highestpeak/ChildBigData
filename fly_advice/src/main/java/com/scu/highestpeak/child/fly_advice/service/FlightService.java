@@ -1,18 +1,18 @@
 package com.scu.highestpeak.child.fly_advice.service;
 
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
-import com.scu.highestpeak.child.fly_advice.domain.BO.AbstractFlightSection;
-import com.scu.highestpeak.child.fly_advice.domain.BO.FlightSection;
+import com.scu.highestpeak.child.fly_advice.domain.BO.AbstractFlightPlanSection;
+import com.scu.highestpeak.child.fly_advice.domain.BO.FlySection;
 import com.scu.highestpeak.child.fly_advice.domain.CABIN_CLASS;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
-import com.scu.highestpeak.child.fly_advice.domain.VO.FlightPlanVO;
+import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
+import com.scu.highestpeak.child.fly_advice.domain.DTO.WhenFlyDTO;
 import com.scu.highestpeak.child.fly_advice.orm.FlightMapper;
 import com.scu.highestpeak.child.fly_advice.service.FlightStrategy.*;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -35,8 +35,7 @@ public class FlightService {
     public List<String> airportContainsSubstr(String subStr, int containsType) {
         List<String> airportList = null;
         switch (containsType) {
-            case GlobalStaticFactory
-                    .SUBSTR_PREFIX:
+            case GlobalStaticFactory.SUBSTR_PREFIX:
                 airportList = flightMapper.selectAirports(subStr + "%");
                 break;
             case GlobalStaticFactory.SUBSTR_IN:
@@ -48,6 +47,14 @@ public class FlightService {
         return airportList;
     }
 
+    /**
+     * 默认临近机场搜索距离
+     */
+    private static double DEFAULT_BOUND_CIRCLE_RADIUS_KM = 100;
+    /**
+     * 默认临近机场搜索经纬度差距
+     */
+    private static double DEFAULT_BOUND_DEGREE_RADIUS_KM = 10;
     /**
      * fixme: 需要经纬度、高度、地域（省份）
      *  进而指定范围
@@ -80,27 +87,26 @@ public class FlightService {
         return null;
     }
 
-    private static Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap =
-            new HashMap<FlightStrategy.STRATEGY, FlightStrategy>() {{
-                // 出发地、目的地、出发时间
-                put(FlightStrategy.STRATEGY.DIRECT, new DefaultDirectStrategy());
-                put(FlightStrategy.STRATEGY.ROUND_TRIP, new DefaultRoundTripStrategy());
-                put(FlightStrategy.STRATEGY.ADVICE, new DefaultAdviceStrategy());
-                put(FlightStrategy.STRATEGY.TRANSFER, new DefaultTransferStrategy());
-            }};
+    /**
+     * todo: 调用spark进行模型预测
+     * @return Map<Date[],Double> Date[]是起止时间,Double 是这段时间内的最低预测价格
+     */
+    public Map<Date[],Double> predictPrice(WhenFlyDTO whenFlyArgs){
+        return null;
+    }
 
     /**
      * filter: 舱位类型、最少余票量
      */
-    private Predicate<FlightSection> cabinClassPredicateGenerate(CABIN_CLASS cabinClass) {
+    private Predicate<FlySection> cabinClassPredicateGenerate(CABIN_CLASS cabinClass) {
         return (flightSection) -> flightSection.getCabinClass().equals(cabinClass);
     }
 
-    private Predicate<FlightSection> remainVotesPredicateGenerate(int remainVotes) {
+    private Predicate<FlySection> remainVotesPredicateGenerate(int remainVotes) {
         return (flightSection) -> flightSection.getRemainingVotes() >= remainVotes;
     }
 
-    private Predicate<FlightSection> satisfyPredicateMerge(List<Predicate<FlightSection>> satisfyStrategyList) {
+    private Predicate<FlySection> satisfyPredicateMerge(List<Predicate<FlySection>> satisfyStrategyList) {
         return satisfyStrategyList.stream().reduce(Predicate::and).orElse(null);
     }
 
@@ -110,10 +116,10 @@ public class FlightService {
      * @param airportPair 起止机场
      * @return 飞行计划
      */
-    private FlightPlanVO generateFlightPlan(FlightStrategy strategy, FlightSearchDTO flightArgs, String[] airportPair) {
+    private FlyPlan generateFlyPlan(FlightStrategy strategy, FlightSearchDTO flightArgs, String[] airportPair) {
         // stream exception handle
         try {
-            return new FlightPlanVO(
+            return new FlyPlan(
                     strategy.name().toString(),
                     strategy.strategy(
                             ((FlightSearchDTO) BeanUtils.cloneBean(flightArgs))
@@ -127,18 +133,16 @@ public class FlightService {
     }
 
     /**
-     * future: 多线程优化
-     * 1. 出发机场列表、到达机场列表 (可选择起止地点附近机场)
-     * 2. 直飞、往返、建议、转机x次 生成航班列表
-     * 通过对 flightStrategyMap 操作来更新策略
+     * future: 多线程优化,lambda表达式是否自动进行了多线程优化？
+     * 1. 机场对列表：出发机场列表、到达机场列表 (可选择起止地点附近机场)
+     * 2. 策略：直飞、往返、建议、转机x次 生成航班列表
      * 3. filter: 舱位类型、最少余票量
      * 通过 satisfyPredicateMerge 来更新filter策略
-     *
      * @param flightArgs dto 传输对象
-     * @return 航班列表
+     * @return 航班列表 Map<String, List<FlyPlan>>
      */
-    public Object searchFlight(final FlightSearchDTO flightArgs) {
-        // 出发机场列表、到达机场列表 (可选择起止地点附近机场)
+    public Map<String, List<FlyPlan>> searchFlight(final FlightSearchDTO flightArgs) {
+        // 生成出发到达机场对的列表
         List<String> startAirports = new ArrayList<String>() {{
             add(flightArgs.getStartPlace());
         }};
@@ -151,41 +155,41 @@ public class FlightService {
         if (flightArgs.getOutboundAltEnabled()) {
             endAirports.addAll(boundAltAirport(flightArgs.getEndPlace()));
         }
-        List<String[]> airportPair = startAirports.stream()
+        List<String[]> airportPairList = startAirports.stream()
                 .flatMap(start -> endAirports.stream().map(end -> new String[]{start, end}))
                 .collect(Collectors.toList());
 
-        // 直飞、往返、建议、转机x次 生成航班列表
-        // collect FlightPlanList
-        Map<String, List<List<AbstractFlightSection>>> typeFlightPlanList = flightStrategyMap.entrySet().stream()
+        // 根据 args 生成策略列表
+        Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap = StrategyBuilder.buildStrategyList(flightArgs);
+
+        // 对所有机场对应用策略，收集飞行计划列表
+        Map<String, List<FlyPlan>> flyPlanList = flightStrategyMap.entrySet().stream()
                 .flatMap(
-                        strategy -> airportPair.stream().map(
-                                pair -> generateFlightPlan(strategy.getValue(), flightArgs, pair)
+                        strategy -> airportPairList.stream().map(
+                                pair -> generateFlyPlan(strategy.getValue(), flightArgs, pair)
                         )
                 )
                 .collect(
                         Collectors.groupingBy(
-                                FlightPlanVO::getStrategy,
-                                Collectors.mapping(FlightPlanVO::getFlightSections, Collectors.toList())
+                                FlyPlan::getStrategy,
+                                Collectors.toList()
                         )
                 );
 
-        // filter flight: 舱位类型、最少余票量
-        // 不能在 generateFlightPlan FlightPlanVO 生成时进行 filter，
-        // 原因是有一个航程段不满足就要放弃整个计划，而不是放弃一个航程段
-        Predicate<FlightSection> flightSectionSatisfy =
-                satisfyPredicateMerge(new ArrayList<Predicate<FlightSection>>() {{
+        // 不能在 generateFlightPlan FlightPlanVO 生成时进行 filter
+        // 原因是有一个航程段不满足就要放弃整个飞行计划，而不是放弃一个航程段
+        Predicate<FlySection> flightSectionSatisfy =
+                satisfyPredicateMerge(new ArrayList<Predicate<FlySection>>() {{
                     add(cabinClassPredicateGenerate(flightArgs.getCabinClass()));
                     add(remainVotesPredicateGenerate(flightArgs.getRemainingVotes()));
                 }});
-        Predicate<List<AbstractFlightSection>> flightPlanSatisfy = (sections) -> sections.stream().anyMatch(item -> {
-            if (item instanceof FlightSection) {
-                return flightSectionSatisfy.test((FlightSection) item);
+        Predicate<FlyPlan> flightPlanSatisfy = (flyPlan) -> flyPlan.getFlightSections().stream().anyMatch(item -> {
+            if (item instanceof FlySection) {
+                return flightSectionSatisfy.test((FlySection) item);
             }
             return true;
         });
-
-        return typeFlightPlanList.entrySet().stream()
+        return flyPlanList.entrySet().stream()
                 .filter(
                         m -> m.getValue().stream()
                                 .allMatch(flightPlanSatisfy)
