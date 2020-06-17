@@ -2,6 +2,7 @@ package com.scu.highestpeak.child.fly_advice.controller;
 
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
 import com.scu.highestpeak.child.fly_advice.domain.CABIN_CLASS;
+import com.scu.highestpeak.child.fly_advice.domain.DO.AirportInAreaDO;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.WhenFlyDTO;
 import com.scu.highestpeak.child.fly_advice.service.FlightService;
@@ -33,7 +34,7 @@ public class FlightController {
 
     @GetMapping("/when")
     public Object findWhenFly(WhenFlyDTO whenFlyDTO){
-        return null;
+        return flightService.predictPrice(whenFlyDTO);
     }
 
     @GetMapping("/cabinClass")
@@ -44,7 +45,7 @@ public class FlightController {
 
     @GetMapping("/prefix")
     @Cacheable(cacheNames = {"prefixAirport"}, key = "#prefix")
-    public List<String> prefixAirport(@RequestParam(name = "RequestParam") String prefix) {
+    public List prefixAirport(@RequestParam(name = "RequestParam") String prefix) {
         return flightService.airportContainsSubstr(prefix, GlobalStaticFactory.SUBSTR_PREFIX);
     }
 

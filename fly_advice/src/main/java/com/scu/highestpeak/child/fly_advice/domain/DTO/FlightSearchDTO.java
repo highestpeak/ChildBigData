@@ -35,7 +35,7 @@ public class FlightSearchDTO {
      */
     private Boolean preferStop;
     /**
-     * todo: 暂时默认 转机一次
+     * future: 暂时默认 转机一次
      */
     private Boolean preferTransfer;
 

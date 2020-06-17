@@ -2,6 +2,7 @@ package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
 import com.scu.highestpeak.child.fly_advice.domain.BO.AbstractFlightPlanSection;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
+import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlySection;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 import com.scu.highestpeak.child.fly_advice.service.pyspider.SpiderFlight;
@@ -17,13 +18,13 @@ public class DefaultDirectStrategy implements FlightStrategy {
     private static final int DIRECT_DEFAULT_ORDER = 0;
 
     @Override
-    public List<AbstractFlightPlanSection> strategy(FlightSearchDTO flightArgs) {
+    public List<FlyPlan> strategy(FlightSearchDTO flightArgs) {
         FlySection flightSection = new FlySection(DIRECT_DEFAULT_ORDER,
                 flightArgs.getStartPlace(), flightArgs.getEndPlace(), "");
         List<Flight> flightsFromSpider = SpiderFlight.crawl(flightArgs.getStartDate(), flightArgs.getStartPlace(),
                 flightArgs.getEndPlace());
         return flightsFromSpider.stream()
-                .map(flight -> generateFlightSection(flight, flightSection))
+                .map(flight -> new FlyPlan(name().toString(),generateFlightSection(flight, flightSection)))
                 .collect(Collectors.toList());
     }
 

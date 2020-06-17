@@ -1,5 +1,7 @@
 package com.scu.highestpeak.child.fly_advice.domain.BO;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -25,6 +27,14 @@ public abstract class AbstractFlightPlanSection {
     @NotNull
     private Date endTime;
 
+    /**
+     * 对航段的评分
+     */
+    private static final int MIN_FLIGHT_SECTION_SCORE = 0;
+    private static final int MAX_FLIGHT_SECTION_SCORE = 10;
+    @Min(MIN_FLIGHT_SECTION_SCORE)
+    @Max(MAX_FLIGHT_SECTION_SCORE)
+    Integer score;
     private String description;
 
     public AbstractFlightPlanSection(Integer order, @NotBlank String segmentType,
@@ -58,4 +68,9 @@ public abstract class AbstractFlightPlanSection {
         this.endTime = endTime;
         return this;
     }
+
+    /**
+     * todo:评分
+     */
+    public abstract Integer calculateScore();
 }

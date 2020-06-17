@@ -11,15 +11,6 @@ import java.util.Date;
 public class FlySection extends AbstractFlightPlanSection {
     private static final String SECTION_LINE_TYPE = "line";
 
-    /**
-     * 对航段的评分
-     */
-    private static final int MIN_FLIGHT_SECTION_SCORE = 0;
-    private static final int MAX_FLIGHT_SECTION_SCORE = 10;
-    @Min(MIN_FLIGHT_SECTION_SCORE)
-    @Max(MAX_FLIGHT_SECTION_SCORE)
-    private Integer score;
-
     @NotBlank
     private String startPlace;
     @NotBlank
@@ -57,23 +48,8 @@ public class FlySection extends AbstractFlightPlanSection {
         return this;
     }
 
-    //    public FlySection setPrice(double price) {
-//        this.price = price;
-//        return this;
-//    }
-//
-//    public FlySection setAirline(String airline) {
-//        this.airline = airline;
-//        return this;
-//    }
-//
-//    public FlySection setAircode(String aircode) {
-//        this.aircode = aircode;
-//        return this;
-//    }
-//
-//    public FlySection setAircraft(String aircraft) {
-//        this.aircraft = aircraft;
-//        return this;
-//    }
+    @Override
+    public Integer calculateScore() {
+        return score;
+    }
 }

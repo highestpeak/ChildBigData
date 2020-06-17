@@ -17,4 +17,9 @@ public class StopSection extends AbstractFlightPlanSection {
         super(order, SECTION_STOP_TYPE, startTime, endTime, description);
         this.place = place;
     }
+
+    @Override
+    public Integer calculateScore() {
+        return score;
+    }
 }
