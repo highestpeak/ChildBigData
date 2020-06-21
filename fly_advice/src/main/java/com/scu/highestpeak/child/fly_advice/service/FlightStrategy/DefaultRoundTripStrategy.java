@@ -2,7 +2,7 @@ package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,12 +19,14 @@ public class DefaultRoundTripStrategy implements FlightStrategy {
 
     @Override
     public List<FlyPlan> strategy(FlightSearchDTO flightArgs) {
+        // 爬取第一段，即来程
         List<FlyPlan> goSections = directStrategy.strategy(flightArgs);
         flightArgs.switchSourceDestination();
+
         // 对每一个计划来程生成返程，连接来程和返程
         goSections.forEach(beforePlan ->
                 directStrategy.strategy(
-                        generateReturnFlightSearchDTO(flightArgs, beforePlan.getLastSection().getEndTime())
+                        generateReturnFlightSearchDTO(flightArgs, beforePlan.lastSection().getEndTime())
                 ).forEach(beforePlan::joinPlan)
         );
         return goSections;
@@ -36,11 +38,8 @@ public class DefaultRoundTripStrategy implements FlightStrategy {
     }
 
     private FlightSearchDTO generateReturnFlightSearchDTO(FlightSearchDTO flightArgs, Date rtn) {
-        try {
-            return ((FlightSearchDTO) BeanUtils.cloneBean(flightArgs))
-                    .setStartDate(rtn);
-        } catch (Exception e) {
-            return null;
-        }
+        FlightSearchDTO flightSearchDTO = new FlightSearchDTO();
+        BeanUtils.copyProperties(flightArgs,flightSearchDTO);
+        return flightSearchDTO.setStartDate(rtn);
     }
 }

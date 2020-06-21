@@ -2,7 +2,7 @@ package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,16 +48,22 @@ public class TransferOneStrategy implements FlightStrategy {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @param flightArgs 原始查询参数
+     * @param stop 转机的机场
+     * @return 飞行计划
+     */
     private List<FlyPlan> find(FlightSearchDTO flightArgs, String stop) {
         // 对于每一机场的入航班和出航班，保证出航班在入航班之后
         List<FlyPlan> goSections = directStrategy.strategy(
                 generateFlightSearchDTO(flightArgs, flightArgs.getStartPlace(), stop)
         );
+
         // 对每一个计划第一段生成第二段，连接第一段和第二段
         goSections.forEach(beforePlan ->
                 directStrategy.strategy(
                         generateFlightSearchDTO(
-                                flightArgs.setStartDate(beforePlan.getLastSection().getEndTime()),
+                                flightArgs.setStartDate(beforePlan.lastSection().getEndTime()),
                                 stop,
                                 flightArgs.getEndPlace()
                         )
@@ -67,14 +73,12 @@ public class TransferOneStrategy implements FlightStrategy {
     }
 
     private FlightSearchDTO generateFlightSearchDTO(final FlightSearchDTO flightArgs, String source, String destination) {
-        try {
-            return ((FlightSearchDTO) BeanUtils.cloneBean(flightArgs))
-                    .setStartPlace(source)
-                    .setEndPlace(destination)
-                    .setStartDate(flightArgs.getStartDate());
-        } catch (Exception e) {
-            return null;
-        }
+        FlightSearchDTO flightSearchDTO = new FlightSearchDTO();
+        BeanUtils.copyProperties(flightArgs,flightSearchDTO);
+        return flightSearchDTO
+                .setStartPlace(source)
+                .setEndPlace(destination)
+                .setStartDate(flightArgs.getStartDate());
     }
 
     @Override

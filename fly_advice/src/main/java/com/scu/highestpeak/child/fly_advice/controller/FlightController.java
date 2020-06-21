@@ -2,9 +2,9 @@ package com.scu.highestpeak.child.fly_advice.controller;
 
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
 import com.scu.highestpeak.child.fly_advice.domain.CABIN_CLASS;
-import com.scu.highestpeak.child.fly_advice.domain.DO.AirportInAreaDO;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.WhenFlyDTO;
+import com.scu.highestpeak.child.fly_advice.service.AirportService;
 import com.scu.highestpeak.child.fly_advice.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 public class FlightController {
     @Autowired
     private FlightService flightService;
+    @Autowired
+    private AirportService airportService;
 
     @GetMapping("/")
     public Object search(FlightSearchDTO flightSearchArgs) {
@@ -46,7 +48,7 @@ public class FlightController {
     @GetMapping("/prefix")
     @Cacheable(cacheNames = {"prefixAirport"}, key = "#prefix")
     public List prefixAirport(@RequestParam(name = "RequestParam") String prefix) {
-        return flightService.airportContainsSubstr(prefix, GlobalStaticFactory.SUBSTR_PREFIX);
+        return airportService.airportContainsSubstr(prefix, GlobalStaticFactory.SUBSTR_PREFIX);
     }
 
 }

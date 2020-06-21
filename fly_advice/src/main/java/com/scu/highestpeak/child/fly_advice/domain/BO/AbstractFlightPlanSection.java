@@ -34,8 +34,11 @@ public abstract class AbstractFlightPlanSection {
     private static final int MAX_FLIGHT_SECTION_SCORE = 10;
     @Min(MIN_FLIGHT_SECTION_SCORE)
     @Max(MAX_FLIGHT_SECTION_SCORE)
-    Integer score;
+    Integer score=0;
     private String description;
+
+    public AbstractFlightPlanSection() {
+    }
 
     public AbstractFlightPlanSection(Integer order, @NotBlank String segmentType,
                                      @NotNull Date startTime, @NotNull Date endTime,
@@ -57,6 +60,46 @@ public abstract class AbstractFlightPlanSection {
 
     public Date getEndTime() {
         return endTime;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public AbstractFlightPlanSection setOrder(Integer order) {
+        this.order = order;
+        return this;
+    }
+
+    public String getSegmentType() {
+        return segmentType;
+    }
+
+    public AbstractFlightPlanSection setSegmentType(String segmentType) {
+        this.segmentType = segmentType;
+        return this;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public AbstractFlightPlanSection setScore(Integer score) {
+        this.score = score;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public AbstractFlightPlanSection setDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     public AbstractFlightPlanSection setStartTime(Date startTime) {

@@ -24,6 +24,9 @@ public class Flight {
 
     private double price;
 
+    public Flight() {
+    }
+
     public Flight(String airline, String flightNumber, String aircraftModel, Date start, Date end, double price) {
         this.airline = airline;
         this.flightNumber = flightNumber;
@@ -55,5 +58,35 @@ public class Flight {
 
     public double getPrice() {
         return price;
+    }
+
+    public Flight setAirline(String airline) {
+        this.airline = airline;
+        return this;
+    }
+
+    public Flight setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+        return this;
+    }
+
+    public Flight setAircraftModel(String aircraftModel) {
+        this.aircraftModel = aircraftModel;
+        return this;
+    }
+
+    public Flight setStart(Date start) {
+        this.start = start;
+        return this;
+    }
+
+    public Flight setEnd(Date end) {
+        this.end = end;
+        return this;
+    }
+
+    public Flight setPrice(double price) {
+        this.price = price;
+        return this;
     }
 }

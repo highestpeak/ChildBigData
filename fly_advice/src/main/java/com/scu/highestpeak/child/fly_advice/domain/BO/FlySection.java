@@ -23,7 +23,11 @@ public class FlySection extends AbstractFlightPlanSection {
 
     private CABIN_CLASS cabinClass;
 
-    public FlySection(Integer order,String description,
+    public FlySection() {
+        
+    }
+
+    public FlySection(Integer order, String description,
                       @NotNull Date startTime, @NotNull Date endTime) {
         super(order, SECTION_LINE_TYPE, startTime, endTime, description);
     }
@@ -51,5 +55,41 @@ public class FlySection extends AbstractFlightPlanSection {
     @Override
     public Integer calculateScore() {
         return score;
+    }
+
+    public static String getSectionLineType() {
+        return SECTION_LINE_TYPE;
+    }
+
+    public String getStartPlace() {
+        return startPlace;
+    }
+
+    public String getEndPlace() {
+        return endPlace;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public FlySection setStartPlace(String startPlace) {
+        this.startPlace = startPlace;
+        return this;
+    }
+
+    public FlySection setEndPlace(String endPlace) {
+        this.endPlace = endPlace;
+        return this;
+    }
+
+    public FlySection setRemainingVotes(Integer remainingVotes) {
+        this.remainingVotes = remainingVotes;
+        return this;
+    }
+
+    public FlySection setCabinClass(CABIN_CLASS cabinClass) {
+        this.cabinClass = cabinClass;
+        return this;
     }
 }

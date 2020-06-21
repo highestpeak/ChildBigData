@@ -20,15 +20,13 @@ public class StrategyBuilder {
 
     public static Map<FlightStrategy.STRATEGY, FlightStrategy> buildStrategyList(FlightSearchDTO flightArgs){
         Map<FlightStrategy.STRATEGY, FlightStrategy> strategies = new HashMap<>(flightStrategyMap.size());
+        strategies.put(FlightStrategy.STRATEGY.DIRECT,flightStrategyMap.get(FlightStrategy.STRATEGY.DIRECT));
         strategies.put(FlightStrategy.STRATEGY.ADVICE,flightStrategyMap.get(FlightStrategy.STRATEGY.ADVICE));
         if(flightArgs.getRtn()){
             strategies.put(FlightStrategy.STRATEGY.ROUND_TRIP,flightStrategyMap.get(FlightStrategy.STRATEGY.ROUND_TRIP));
         }
-        if (flightArgs.getPreferDirects()){
-            strategies.put(FlightStrategy.STRATEGY.DIRECT,flightStrategyMap.get(FlightStrategy.STRATEGY.ROUND_TRIP));
-        }
         if (flightArgs.getPreferTransfer()){
-            strategies.put(FlightStrategy.STRATEGY.TRANSFER,flightStrategyMap.get(FlightStrategy.STRATEGY.ROUND_TRIP));
+            strategies.put(FlightStrategy.STRATEGY.TRANSFER,flightStrategyMap.get(FlightStrategy.STRATEGY.TRANSFER));
         }
         return strategies;
     }

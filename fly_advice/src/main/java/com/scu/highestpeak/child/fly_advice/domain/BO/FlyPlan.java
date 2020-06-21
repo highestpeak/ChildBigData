@@ -56,7 +56,7 @@ public class FlyPlan {
         return flightSections;
     }
 
-    public AbstractFlightPlanSection getLastSection() {
+    public AbstractFlightPlanSection lastSection() {
         return flightSections.stream().reduce((first, second) -> second).orElse(null);
     }
 
@@ -70,6 +70,8 @@ public class FlyPlan {
     public void calculateScore() {
         score = (int) flightSections.stream()
                 .map(AbstractFlightPlanSection::calculateScore)
-                .mapToInt(value -> value).average().orElse(0.0);
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
     }
 }
