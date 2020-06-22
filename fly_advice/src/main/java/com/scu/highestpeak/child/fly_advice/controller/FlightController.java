@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 public class FlightController {
     @Autowired
     private FlightService flightService;
-    @Autowired
-    private AirportService airportService;
 
     @GetMapping("/")
     public Object search(FlightSearchDTO flightSearchArgs) {
@@ -43,12 +41,6 @@ public class FlightController {
     @Cacheable(cacheNames = {"cabinClass"})
     public List<String> cabinClassValues() {
         return Arrays.stream(CABIN_CLASS.values()).map(Enum::name).collect(Collectors.toList());
-    }
-
-    @GetMapping("/prefix")
-    @Cacheable(cacheNames = {"prefixAirport"}, key = "#prefix")
-    public List prefixAirport(@RequestParam(name = "RequestParam") String prefix) {
-        return airportService.airportContainsSubstr(prefix, GlobalStaticFactory.SUBSTR_PREFIX);
     }
 
 }

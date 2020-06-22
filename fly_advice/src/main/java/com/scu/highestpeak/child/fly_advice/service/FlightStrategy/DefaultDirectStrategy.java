@@ -1,13 +1,10 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
-import com.scu.highestpeak.child.fly_advice.domain.BO.AbstractFlightPlanSection;
-import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
-import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
-import com.scu.highestpeak.child.fly_advice.domain.BO.FlySection;
-import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
+import com.scu.highestpeak.child.fly_advice.domain.BO.*;
 import com.scu.highestpeak.child.fly_advice.service.FlightSpider.SpiderFlight;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,13 +15,13 @@ public class DefaultDirectStrategy implements FlightStrategy {
     private static final int DIRECT_DEFAULT_ORDER = 0;
 
     @Override
-    public List<FlyPlan> strategy(FlightSearchDTO flightArgs) {
+    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate) {
         FlySection flightSection = new FlySection(
                 DIRECT_DEFAULT_ORDER, "",
-                flightArgs.getStartPlace(),flightArgs.getEndPlace()
+                source.getName(), destination.getName()
         );
         List<Flight> flightsFromSpider =
-                SpiderFlight.crawl(flightArgs.getStartDate(), flightArgs.getStartPlace(),flightArgs.getEndPlace());
+                SpiderFlight.crawl(source, destination, startDate);
         return flightsFromSpider.stream()
                 .map(flight -> new FlyPlan(name().toString(), generateFlightSection(flight, flightSection)))
                 .collect(Collectors.toList());
@@ -37,13 +34,14 @@ public class DefaultDirectStrategy implements FlightStrategy {
 
     /**
      * 从模板复制，并把航班赋值给航段
-     * @param flight 航班
+     *
+     * @param flight        航班
      * @param flightSection 航段模板
      * @return 飞行计划
      */
     private AbstractFlightPlanSection generateFlightSection(Flight flight, FlySection flightSection) {
         FlySection flySection = new FlySection();
-        BeanUtils.copyProperties(flightSection,flySection);
+        BeanUtils.copyProperties(flightSection, flySection);
         return flySection
                 .setFlight(flight)
                 .setStartTime(flight.getStart())

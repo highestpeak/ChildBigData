@@ -1,8 +1,9 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
-import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface FlightStrategy {
         ADVICE
     }
 
-    List<FlyPlan> strategy(FlightSearchDTO flightArgs);
+    List<FlyPlan> strategy(Airport source, Airport destination, Date startDate);
 
     STRATEGY name();
 }

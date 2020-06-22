@@ -1,5 +1,6 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 
 import java.util.ArrayList;
@@ -22,28 +23,27 @@ public class SpiderFlight {
     /**
      * future: 一个特色：用户可以选取信息源，指定从哪个地方爬取
      */
-    public static List<AbstractCrawlTask> crawlTaskList(Date start, String source, String destination) {
+    public static List<AbstractCrawlTask> crawlTaskList(Airport source, Airport destination, Date startDate) {
         List<AbstractCrawlTask> crawlTaskList = new ArrayList<>();
-        crawlTaskList.add(new XieChengSpider(start, source, destination));
-        crawlTaskList.add(new ChunQiuSpider(start, source, destination));
-        crawlTaskList.add(new ExpediaSpider(start, source, destination));
-        crawlTaskList.add(new TongChengSpider(start, source, destination));
+        crawlTaskList.add(new XieChengSpider(source, destination, startDate));
+        crawlTaskList.add(new ChunQiuSpider(source, destination, startDate));
+        crawlTaskList.add(new ExpediaSpider(source, destination, startDate));
+        crawlTaskList.add(new TongChengSpider(source, destination, startDate));
         return crawlTaskList;
     }
 
     /**
-     * todo: okhttp3 请求航班
+     * okhttp3 请求航班
      * 默认请求直飞航班
-     *
-     * @param start       出发日期
-     * @param source      出发地
+     * @param source 出发地
      * @param destination 到达地
+     * @param startDate 出发日期
      * @return 出发地到到达地的航班列表
      */
-    public static List<Flight> crawl(Date start, String source, String destination) {
+    public static List<Flight> crawl(Airport source, Airport destination, Date startDate) {
         List<Flight> results = new ArrayList<>();
         List<Future<List<Flight>>> futures = new ArrayList<>();
-        crawlTaskList(start, source, destination).forEach(crawlTask -> futures.add(spiderExec.submit(crawlTask)));
+        crawlTaskList(source, destination, startDate).forEach(crawlTask -> futures.add(spiderExec.submit(crawlTask)));
         for (Future<List<Flight>> fs : futures) {
             try {
                 results.addAll(fs.get());

@@ -1,16 +1,12 @@
 package com.scu.highestpeak.child.fly_advice.service;
 
-import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
-import com.scu.highestpeak.child.fly_advice.domain.BO.AbstractFlightPlanSection;
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlySection;
 import com.scu.highestpeak.child.fly_advice.domain.CABIN_CLASS;
-import com.scu.highestpeak.child.fly_advice.domain.DO.AirportInAreaDO;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
 import com.scu.highestpeak.child.fly_advice.domain.DTO.WhenFlyDTO;
-import com.scu.highestpeak.child.fly_advice.orm.FlightMapper;
 import com.scu.highestpeak.child.fly_advice.service.FlightStrategy.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +14,6 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static java.lang.Math.toRadians;
 
 /**
  * @author highestpeak
@@ -47,12 +42,12 @@ public class FlightService {
 
     private Predicate<FlySection> cabinClassPredicateGenerate(CABIN_CLASS cabinClass) {
 //        return (flightSection) -> flightSection.getCabinClass().equals(cabinClass);
-        return (flightSection)->true;
+        return (flightSection) -> true;
     }
 
     private Predicate<FlySection> remainVotesPredicateGenerate(int remainVotes) {
 //        return (flightSection) -> flightSection.getRemainingVotes() >= remainVotes;
-        return (flightSection)->true;
+        return (flightSection) -> true;
     }
 
     private Predicate<FlySection> satisfyPredicateMerge(List<Predicate<FlySection>> satisfyStrategyList) {
@@ -63,7 +58,7 @@ public class FlightService {
      * FlyPlan
      */
 
-    private static class FlyPlanGroup{
+    private static class FlyPlanGroup {
         String strategy;
         List<FlyPlan> flyPlanList;
 
@@ -80,23 +75,21 @@ public class FlightService {
             return flyPlanList;
         }
     }
+
     /**
      * @param strategy    计划生成策略
-     * @param flightArgs  飞行限制参数
+     * @param startDate   飞行日期
      * @param airportPair 起止机场
      * @return 飞行计划
      */
-    private FlyPlanGroup generateFlyPlan(FlightStrategy strategy, FlightSearchDTO flightArgs, String[] airportPair) {
+    private FlyPlanGroup generateFlyPlan(FlightStrategy strategy, Date startDate, Airport[] airportPair) {
         // stream exception handle
-        FlyPlanGroup flyPlanGroup;
-        FlightSearchDTO flightSearchDTO = new FlightSearchDTO();
-        BeanUtils.copyProperties(flightArgs,flightSearchDTO);
-        flyPlanGroup= new FlyPlanGroup(
+        FlyPlanGroup flyPlanGroup = new FlyPlanGroup(
                 strategy.name().toString(),
                 strategy.strategy(
-                        flightSearchDTO.setStartPlace(airportPair[0])
-                                .setEndPlace(airportPair[1])
-                                .setStartDate(flightArgs.getStartDate())
+                        airportPair[0],
+                        airportPair[1],
+                        startDate
                 )
         );
         return flyPlanGroup;
@@ -114,20 +107,20 @@ public class FlightService {
      */
     public Map<String, List<FlyPlan>> searchFlight(final FlightSearchDTO flightArgs) {
         // 生成出发到达机场对的列表
-        List<String> startAirports = new ArrayList<String>() {{
-            add(flightArgs.getStartPlace());
+        List<Airport> startAirports = new ArrayList<Airport>() {{
+            add(airportService.searchByName(flightArgs.getStartPlace()));
         }};
         if (flightArgs.getInboundAltEnabled()) {
             startAirports.addAll(airportService.boundAltAirport(flightArgs.getStartPlace()));
         }
-        List<String> endAirports = new ArrayList<String>() {{
-            add(flightArgs.getEndPlace());
+        List<Airport> endAirports = new ArrayList<Airport>() {{
+            add(airportService.searchByName(flightArgs.getEndPlace()));
         }};
         if (flightArgs.getOutboundAltEnabled()) {
             endAirports.addAll(airportService.boundAltAirport(flightArgs.getEndPlace()));
         }
-        List<String[]> airportPairList = startAirports.stream()
-                .flatMap(start -> endAirports.stream().map(end -> new String[]{start, end}))
+        List<Airport[]> airportPairList = startAirports.stream()
+                .flatMap(start -> endAirports.stream().map(end -> new Airport[]{start, end}))
                 .collect(Collectors.toList());
 
         // 根据 args 生成策略列表
@@ -137,7 +130,7 @@ public class FlightService {
         Map<String, List<FlyPlan>> flyPlanList = flightStrategyMap.entrySet().stream()
                 .flatMap(
                         strategy -> airportPairList.stream().map(
-                                pair -> generateFlyPlan(strategy.getValue(), flightArgs, pair)
+                                pair -> generateFlyPlan(strategy.getValue(), flightArgs.getStartDate(), pair)
                         )
                 ).flatMap(
                         flyPlanGroup -> flyPlanGroup.getFlyPlanList().stream()
@@ -162,7 +155,7 @@ public class FlightService {
             }
             return true;
         });
-        flyPlanList.entrySet().removeIf(planEntry->planEntry.getValue().stream().allMatch(flightPlanSatisfy));
+        flyPlanList.entrySet().removeIf(planEntry -> planEntry.getValue().stream().allMatch(flightPlanSatisfy));
 
         // 对每一个计划进行评分
         flyPlanList.forEach((s, flyPlans) -> flyPlans.forEach(FlyPlan::calculateScore));

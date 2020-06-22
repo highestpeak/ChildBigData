@@ -1,5 +1,6 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.ChunQiuSpiderRequestVO;
 import okhttp3.MediaType;
@@ -22,8 +23,8 @@ public class ChunQiuSpider extends AbstractCrawlTask {
     private static final String CHUN_QIU_TARGET_URL = "https://flights.ch.com/Flights/SearchByTime";
     private static SimpleDateFormat formatResponseDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public ChunQiuSpider(Date start, String source, String destination) {
-        super(start, source, destination);
+    public ChunQiuSpider(Airport source, Airport destination, Date startDate) {
+        super(source, destination, startDate);
     }
 
     @Override

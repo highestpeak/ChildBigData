@@ -1,5 +1,6 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.TongChengSpiderRequestVO;
 import okhttp3.MediaType;
@@ -23,18 +24,18 @@ public class TongChengSpider extends AbstractCrawlTask {
     private static final String TONG_CHENG_TARGET_URL = "https://www.ly.com/flights/api/getflightlist";
     private static SimpleDateFormat formatResponseDate = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
-    public TongChengSpider(Date start, String source, String destination) {
-        super(start, source, destination);
+    public TongChengSpider(Airport source, Airport destination, Date startDate) {
+        super(source, destination, startDate);
     }
 
     @Override
     Request buildRequest() {
         MediaType mediaType = MediaType.parse("application/json");
-        // fixme: 转换城市为三字码
+        // 转换城市为三字码
         String dccode = this.getSource();
         String accode = this.getDestination();
         Date startDate = this.getStart();
-        // fixme:  new TongChengSpiderRequestVO.SearchItem("CTU", "SHA", new SimpleDateFormat("yyyy-MM-dd").parse
+        // new TongChengSpiderRequestVO.SearchItem("CTU", "SHA", new SimpleDateFormat("yyyy-MM-dd").parse
         //  ("2020-06-25"))
         TongChengSpiderRequestVO tongChengSpiderRequestVO = new TongChengSpiderRequestVO(
                 new TongChengSpiderRequestVO.SearchItem(dccode, accode, startDate)
@@ -86,5 +87,15 @@ public class TongChengSpider extends AbstractCrawlTask {
             return null;
         }
         return flights;
+    }
+
+    @Override
+    String getSource() {
+        return this.source.getIATACode();
+    }
+
+    @Override
+    String getDestination() {
+        return this.destination.getIATACode();
     }
 }

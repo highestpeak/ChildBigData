@@ -31,7 +31,7 @@ public class FlightSearchDTO {
 
     private Boolean preferDirects;
     /**
-     * todo: 经停处理
+     * future: 经停处理
      */
     private Boolean preferStop;
     /**
@@ -61,7 +61,7 @@ public class FlightSearchDTO {
         }
         this.cabinClass = cabinClass;
 
-        // todo: 添加异常到全局 exceptionhandle 类处
+        // future: 添加异常到全局 exceptionhandle 类处
         if ((rtn) && (rtnDate == null)) {
             throw new RuntimeException("必须提供返程日期");
         }
@@ -193,7 +193,7 @@ public class FlightSearchDTO {
     }
 
     /**
-     * todo: 防错处理
+     * future: 防错处理
       */
     public void assertSourceDestinationNotEqual() {
         if (startPlace == null || endPlace == null) {

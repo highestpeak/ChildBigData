@@ -1,5 +1,6 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.XieChengSpiderRequestVO;
 import okhttp3.*;
@@ -19,8 +20,9 @@ public class XieChengSpider extends AbstractCrawlTask {
     private static final String XIE_CHENG_TARGET_URL = "https://m.ctrip.com/restapi/soa2/14022/flightListSearch";
     // private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public XieChengSpider(Date start, String source, String destination) {
-        super(start, source, destination);
+
+    public XieChengSpider(Airport source, Airport destination, Date startDate) {
+        super(source, destination, startDate);
     }
 
     @Override
@@ -89,13 +91,13 @@ public class XieChengSpider extends AbstractCrawlTask {
 
     @Override
     String getSource() {
-        // todo: "BJS"
-        return source;
+        // "BJS"
+        return source.getIATACode();
     }
 
     @Override
     String getDestination() {
-        // todo: "SHA"
-        return destination;
+        // "SHA"
+        return destination.getIATACode();
     }
 }

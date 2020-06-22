@@ -1,8 +1,8 @@
 package com.scu.highestpeak.child.fly_advice.service;
 
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
-import com.scu.highestpeak.child.fly_advice.domain.DO.AirportInAreaDO;
-import com.scu.highestpeak.child.fly_advice.orm.FlightMapper;
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
+import com.scu.highestpeak.child.fly_advice.orm.AirportMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,16 @@ import static java.lang.Math.toRadians;
 @Service
 public class AirportService {
     @Autowired
-    FlightMapper flightMapper;
+    AirportMapper airportMapper;
+
+    /**
+     * todo:
+     * @param ariportName
+     * @return
+     */
+    public Airport searchByName(String ariportName){
+        return null;
+    }
 
     /**
      * future: 多种 contains type 可以一起起作用，那就是责任链？
@@ -26,18 +35,18 @@ public class AirportService {
      * 每个类型有各自的正则字符串？
      */
     public List<String> airportContainsSubstr(String subStr, int containsType) {
-        List<AirportInAreaDO> airportList = null;
+        List<Airport> airportList = null;
         switch (containsType) {
             case GlobalStaticFactory.SUBSTR_PREFIX:
-                airportList = flightMapper.selectAirports(subStr + "%");
+                airportList = airportMapper.selectAirports(subStr + "%");
                 break;
             case GlobalStaticFactory.SUBSTR_IN:
-                airportList = flightMapper.selectAirports("%" + subStr + "%");
+                airportList = airportMapper.selectAirports("%" + subStr + "%");
                 break;
             default:
                 break;
         }
-        return airportList.stream().map(AirportInAreaDO::getName).collect(Collectors.toList());
+        return airportList.stream().map(Airport::getName).collect(Collectors.toList());
     }
 
     private static final double EARTH_RADIUS = 6367000.0;
@@ -85,39 +94,37 @@ public class AirportService {
      * @param airport center airport
      * @return bound airport name string list
      */
-    public List<String> boundAltAirport(String airport) {
+    public List<Airport> boundAltAirport(String airport) {
         return airportDistance(airport,new double[]{DEFAULT_BOUND_DEGREE_RADIUS,DEFAULT_BOUND_DEGREE_RADIUS});
     }
 
-    public List<AirportInAreaDO> airportInArea(List<String> provinceList) {
+    public List<Airport> airportInArea(List<String> provinceList) {
         return provinceList.stream()
                 .flatMap(province -> airportInArea(province).stream())
                 .collect(Collectors.toList());
     }
 
-    public List<AirportInAreaDO> airportInArea(String province) {
-        return flightMapper.airportInArea(province);
+    public List<Airport> airportInArea(String province) {
+        return airportMapper.airportInArea(province);
     }
 
-    public List<String> airportDistance(String airport, double kmDistance) {
+    public List<Airport> airportDistance(String airport, double kmDistance) {
         return airportDistance(airport,distanceToDegree(kmDistance));
     }
 
-    public List<String> airportDistance(String airport, double[] degreeDiff) {
-        AirportInAreaDO airportInAreaDO = flightMapper.selectAirports(airport).stream().findFirst().orElse(null);
-        if (airportInAreaDO==null){
+    public List<Airport> airportDistance(String airport, double[] degreeDiff) {
+        Airport airportDO = airportMapper.selectAirports(airport).stream().findFirst().orElse(null);
+        if (airportDO==null){
             return null;
         }
         double[] latitudeRange = {
-                airportInAreaDO.getLatitude()-degreeDiff[0],
-                airportInAreaDO.getLatitude()+degreeDiff[0]
+                airportDO.getLatitude()-degreeDiff[0],
+                airportDO.getLatitude()+degreeDiff[0]
         };
         double[] longitudeRange = {
-                airportInAreaDO.getLongitude()-degreeDiff[1],
-                airportInAreaDO.getLongitude()+degreeDiff[1]
+                airportDO.getLongitude()-degreeDiff[1],
+                airportDO.getLongitude()+degreeDiff[1]
         };
-        return flightMapper.boundAirports(latitudeRange, longitudeRange).stream()
-                .map(AirportInAreaDO::getName)
-                .collect(Collectors.toList());
+        return airportMapper.boundAirports(latitudeRange, longitudeRange);
     }
 }

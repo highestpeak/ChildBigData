@@ -1,9 +1,10 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightStrategy;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
-import com.scu.highestpeak.child.fly_advice.domain.DTO.FlightSearchDTO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class DefaultAdviceStrategy implements FlightStrategy {
     @Override
-    public List<FlyPlan> strategy(FlightSearchDTO flightArgs) {
+    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate) {
         return new ArrayList<>();
     }
 

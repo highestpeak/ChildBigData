@@ -65,7 +65,7 @@ public class FlyPlan {
     }
 
     /**
-     * todo:评分
+     * future:评分
      */
     public void calculateScore() {
         score = (int) flightSections.stream()

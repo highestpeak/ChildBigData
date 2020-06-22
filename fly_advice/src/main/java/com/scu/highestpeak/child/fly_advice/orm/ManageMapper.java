@@ -43,7 +43,6 @@ public interface ManageMapper {
     int addHistory(int id,int plan_id,int plan_order,String cabin_class,int user_id,int flight_id,String flight_type,int supplier_id,int buy_date);
 
     @Delete({"Delete from user_history where id=#{id}"})
-//    @ResponseBody
     int deleteHistory(int id);
 
     @Select({"SELECT * from history_flight where id =#{id}"})

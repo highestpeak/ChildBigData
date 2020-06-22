@@ -1,5 +1,6 @@
 package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
+import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -14,14 +15,14 @@ import java.util.concurrent.Callable;
  */
 public abstract class AbstractCrawlTask implements Callable<List<Flight>> {
     Date start;
-    String source;
-    String destination;
+    Airport source;
+    Airport destination;
 
     public AbstractCrawlTask() {
     }
 
-    public AbstractCrawlTask(Date start, String source, String destination) {
-        this.start = start;
+    public AbstractCrawlTask(Airport source, Airport destination, Date startDate) {
+        this.start = startDate;
         this.source = source;
         this.destination = destination;
     }
@@ -38,8 +39,14 @@ public abstract class AbstractCrawlTask implements Callable<List<Flight>> {
         return parseDataToFlights(jsonData);
     }
 
+    /**
+     * 模板方法
+     */
     abstract Request buildRequest();
 
+    /**
+     * 模板方法
+     */
     abstract List<Flight> parseDataToFlights(String jsonData);
 
     Date getStart() {
@@ -47,10 +54,10 @@ public abstract class AbstractCrawlTask implements Callable<List<Flight>> {
     }
 
     String getSource() {
-        return source;
+        return source.getName();
     }
 
     String getDestination() {
-        return destination;
+        return destination.getName();
     }
 }

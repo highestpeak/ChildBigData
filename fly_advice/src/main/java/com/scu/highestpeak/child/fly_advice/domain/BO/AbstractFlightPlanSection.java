@@ -113,7 +113,7 @@ public abstract class AbstractFlightPlanSection {
     }
 
     /**
-     * todo:评分
+     * future:评分 递归评分
      */
     public abstract Integer calculateScore();
 }

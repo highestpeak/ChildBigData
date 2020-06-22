@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author gtong
+ * @author highestpeak
+ */
 public class TongChengSpiderRequestVO {
     private SearchItem searchitem;
 
