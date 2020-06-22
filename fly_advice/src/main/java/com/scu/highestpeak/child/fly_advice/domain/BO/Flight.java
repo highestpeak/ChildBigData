@@ -1,6 +1,8 @@
 package com.scu.highestpeak.child.fly_advice.domain.BO;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author highestpeak
@@ -21,18 +23,28 @@ public class Flight {
 
     private Date start;
     private Date end;
-
+    /**
+     * 分舱位类型的爬取到的价格
+     */
+    private Map<String,Double> priceMap;
+    /**
+     * 没有分舱位类型的爬取到的价格
+     */
     private double price;
 
     public Flight() {
     }
 
-    public Flight(String airline, String flightNumber, String aircraftModel, Date start, Date end, double price) {
+    public Flight(String airline, String flightNumber, String aircraftModel, Date start, Date end) {
         this.airline = airline;
         this.flightNumber = flightNumber;
         this.aircraftModel = aircraftModel;
         this.start = start;
         this.end = end;
+    }
+
+    public Flight(String airline, String flightNumber, String aircraftModel, Date start, Date end, double price) {
+        this(airline, flightNumber, aircraftModel, start, end);
         this.price = price;
     }
 
@@ -58,6 +70,14 @@ public class Flight {
 
     public double getPrice() {
         return price;
+    }
+
+    public Flight newPriceEntry(String name,Double price){
+        if (this.priceMap==null){
+            this.priceMap=new HashMap<>();
+        }
+        this.priceMap.put(name,price);
+        return this;
     }
 
     public Flight setAirline(String airline) {
