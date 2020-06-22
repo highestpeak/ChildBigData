@@ -1,5 +1,20 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <div  style="background-color:#f5f5f5">
+      <SearchBar />
+    </div>
+    
+    <SearchResult/>
   </div>
 </template>
+
+<script>
+import SearchBar from '@/components/SearchBar.vue'
+import SearchResult from "@/views/SearchResultPage.vue";
+export default {
+  name:"",
+  components:{
+    SearchResult,SearchBar
+  }
+}
+</script>
