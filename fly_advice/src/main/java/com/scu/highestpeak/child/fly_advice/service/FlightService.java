@@ -108,14 +108,22 @@ public class FlightService {
     public Map<String, List<FlyPlan>> searchFlight(final FlightSearchDTO flightArgs) {
         // 生成出发到达机场对的列表
         List<Airport> startAirports = new ArrayList<Airport>() {{
-            add(airportService.searchByName(flightArgs.getStartPlace()));
+            add(airportService.searchAirport(flightArgs.getStartPlace()));
         }};
+        if (startAirports.size()==0){
+            //todo: 封装 error message
+            return null;
+        }
         if (flightArgs.getInboundAltEnabled()) {
             startAirports.addAll(airportService.boundAltAirport(flightArgs.getStartPlace()));
         }
         List<Airport> endAirports = new ArrayList<Airport>() {{
-            add(airportService.searchByName(flightArgs.getEndPlace()));
+            add(airportService.searchAirport(flightArgs.getEndPlace()));
         }};
+        if (endAirports.size()==0){
+            //todo: 封装 error message
+            return null;
+        }
         if (flightArgs.getOutboundAltEnabled()) {
             endAirports.addAll(airportService.boundAltAirport(flightArgs.getEndPlace()));
         }

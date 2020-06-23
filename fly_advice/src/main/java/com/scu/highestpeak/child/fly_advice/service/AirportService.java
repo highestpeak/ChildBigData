@@ -19,13 +19,16 @@ public class AirportService {
     @Autowired
     AirportMapper airportMapper;
 
+    private static final int IATA_LEN = 3;
     /**
-     * todo:
-     * @param ariportName
-     * @return
+     * 搜索机场，搜索字段有多种可能,只能搜索一个机场
+     * 1. 为机场名称
+     * 2. 为机场三字码
+     * @param query 查询字符串
+     * @return 机场 if not exist null
      */
-    public Airport searchByName(String ariportName){
-        return null;
+    public Airport searchAirport(String query){
+        return airportMapper.selectAirportByNameOrIATA(query);
     }
 
     /**
@@ -38,10 +41,10 @@ public class AirportService {
         List<Airport> airportList = null;
         switch (containsType) {
             case GlobalStaticFactory.SUBSTR_PREFIX:
-                airportList = airportMapper.selectAirports(subStr + "%");
+                airportList = airportMapper.selectAirportsNameMatch(subStr + "%");
                 break;
             case GlobalStaticFactory.SUBSTR_IN:
-                airportList = airportMapper.selectAirports("%" + subStr + "%");
+                airportList = airportMapper.selectAirportsNameMatch("%" + subStr + "%");
                 break;
             default:
                 break;
@@ -113,7 +116,7 @@ public class AirportService {
     }
 
     public List<Airport> airportDistance(String airport, double[] degreeDiff) {
-        Airport airportDO = airportMapper.selectAirports(airport).stream().findFirst().orElse(null);
+        Airport airportDO = airportMapper.selectAirportsNameMatch(airport).stream().findFirst().orElse(null);
         if (airportDO==null){
             return null;
         }

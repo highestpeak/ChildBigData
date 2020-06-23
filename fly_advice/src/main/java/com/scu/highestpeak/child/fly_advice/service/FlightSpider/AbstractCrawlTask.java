@@ -30,6 +30,8 @@ public abstract class AbstractCrawlTask implements Callable<List<Flight>> {
     /**
      * 爬虫调用逻辑
      * @return 爬取到的航班列表
+     * todo: client 复用
+     *  异常捕获
      */
     @Override
     public List<Flight> call() throws Exception {

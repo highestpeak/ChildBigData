@@ -14,20 +14,24 @@ import java.util.List;
 @Mapper
 @Repository
 public interface AirportMapper {
-    @Select("select * from airport where name like #{likeStr}")
+    @Select("select * from airport where name like '${likeStr}'")
     @Results(id="AirportMap", value={
-            @Result(column="IATA", property="IATACode", jdbcType=JdbcType.VARCHAR),
-            @Result(column="city", property="cityName", jdbcType=JdbcType.VARCHAR),
-            @Result(column="city_code ", property="cityCode", jdbcType=JdbcType.VARCHAR)
+            @Result(column="IATA", property="IATACode"),
+            @Result(column="city", property="cityName"),
+            @Result(column="city_code", property="cityCode")
     })
-    List<Airport> selectAirports(@Param("likeStr") String likeStr);
+    List<Airport> selectAirportsNameMatch(String likeStr);
 
     @Select("select * from airport")
     @ResultMap(value="AirportMap")
     List<Airport> selectAllAirports();
 
+    @Select("select * from airport where name = #{query} or IATA = #{query}")
+    @ResultMap(value="AirportMap")
+    Airport selectAirportByNameOrIATA(String query);
+
     @Select("select * from airport where " +
-            "latitude between #{latitudeRange[0]} and #{latitudeRange[1]} and" +
+            "latitude between #{latitudeRange[0]} and #{latitudeRange[1]} and " +
             "longitude between #{longitudeRange[0]} and #{longitudeRange[1]}")
     @ResultMap(value="AirportMap")
     List<Airport> boundAirports(

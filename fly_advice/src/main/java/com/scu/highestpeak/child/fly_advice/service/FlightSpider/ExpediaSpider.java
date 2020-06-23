@@ -58,7 +58,7 @@ public class ExpediaSpider extends AbstractCrawlTask {
     @Override
     List<Flight> parseDataToFlights(String jsonData) {
         int count = 0;
-        List<Flight> flights = new ArrayList<Flight>();
+        List<Flight> flights = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONObject jsonObject1 = jsonObject.getJSONObject("content").getJSONObject("legs");
         Iterator<String> stringIterator = jsonObject1.keys();

@@ -22,6 +22,9 @@ public abstract class AbstractFlightPlanSection {
     @NotBlank
     private String segmentType;
 
+    /**
+     * 航段起止时间
+     */
     @NotNull
     private Date startTime;
     @NotNull
@@ -35,6 +38,10 @@ public abstract class AbstractFlightPlanSection {
     @Min(MIN_FLIGHT_SECTION_SCORE)
     @Max(MAX_FLIGHT_SECTION_SCORE)
     Integer score=0;
+
+    /**
+     * 航段描述
+     */
     private String description;
 
     public AbstractFlightPlanSection() {

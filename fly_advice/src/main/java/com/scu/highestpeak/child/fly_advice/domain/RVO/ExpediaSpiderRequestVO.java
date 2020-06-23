@@ -11,16 +11,16 @@ import java.util.List;
  */
 public class ExpediaSpiderRequestVO {
     private List<SearchItem> searchitem;
-    private static final String EXPEDIA_FORMAT = "{\r\n    \"trips\": [\r\n        \r\n    ],\r\n    " +
+    private static final String EXPEDIA_FORMAT = "{\r\n    \"trips\": [\r\n     %s   \r\n    ],\r\n    " +
             "\"numberOfAdults\": 1,\r\n    " +
             "\"childAges\": [],\r\n    \"infantInLap\": [\r\n        false\r\n    ],\r\n    \"isRefundableFlight\": " +
             "false,\r\n    \"isNonStopFlight\": true,\r\n    \"airlinePreference\": \"\",\r\n    \"cabinClass\": " +
             "\"coach\",\r\n    \"pageSelectionParameters\": {},\r\n    \"packageType\": \"f\",\r\n    \"routeType\": " +
             "\"OneWay\",\r\n    \"hashCodeToCheckValidation\": \"\",\r\n    \"stubFile\": null\r\n}";
-    private static final String SEARCH_ITEM_FORMAT = "{\r\n            \" +\n" +
-            "            \"\"departureAirportCode\": \"%s\",\r\n            \"arrivalAirportCode\": " +
-            "\"%s\",\r\n            \" +\n" +
-            "            \"\"departureDate\": \"%s\"\r\n        }";
+    private static final String SEARCH_ITEM_FORMAT = "{\r\n" +
+            "\"departureAirportCode\": \"%s\",\r\n " +
+            "\"arrivalAirportCode\": \"%s\",\r\n " +
+            "\"departureDate\": \"%s\"\r\n }";
 
     private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 

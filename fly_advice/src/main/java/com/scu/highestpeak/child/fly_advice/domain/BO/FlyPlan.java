@@ -5,6 +5,9 @@ import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.scu.highestpeak.child.fly_advice.GlobalStaticFactory.MAX_SCORE;
+import static com.scu.highestpeak.child.fly_advice.GlobalStaticFactory.MIN_SCORE;
+
 /**
  * @author highestpeak
  */
@@ -18,10 +21,8 @@ public class FlyPlan {
     /**
      * 对航行计划的评分
      */
-    private static final int MIN_FLY_PLAN_SCORE = 0;
-    private static final int MAX_FLY_PLAN_SCORE = 10;
-    @Min(MIN_FLY_PLAN_SCORE)
-    @Max(MAX_FLY_PLAN_SCORE)
+    @Min(MIN_SCORE)
+    @Max(MAX_SCORE)
     private Integer score;
 
     public FlyPlan(String strategy, List<AbstractFlightPlanSection> sections, Integer score) {
@@ -60,6 +61,10 @@ public class FlyPlan {
         return flightSections.stream().reduce((first, second) -> second).orElse(null);
     }
 
+    /**
+     * 连接飞行计划
+     * @param after 接在本计划后的飞行计划
+     */
     public void joinPlan(FlyPlan after) {
         this.flightSections.addAll(after.getFlightSections());
     }

@@ -58,7 +58,6 @@ public class TongChengSpider extends AbstractCrawlTask {
         List<Flight> flights = new ArrayList<>();
         if (flightArray.length() > 0) {
             for (int i = 0; i < flightArray.length(); i++) {
-                System.out.println(i);
                 JSONObject jsonObject = flightArray.getJSONObject(i);
 
                 JSONObject prices = jsonObject.getJSONObject("productPrices");

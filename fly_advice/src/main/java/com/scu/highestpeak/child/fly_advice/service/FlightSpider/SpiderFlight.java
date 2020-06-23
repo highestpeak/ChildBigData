@@ -39,6 +39,9 @@ public class SpiderFlight {
      * @param destination 到达地
      * @param startDate 出发日期
      * @return 出发地到到达地的航班列表
+     * todo: 把所有 供应商 的异常都抛出，在这个类里处理这一级异常
+     *  添加供应商模块
+     *  修改flight为子类
      */
     public static List<Flight> crawl(Airport source, Airport destination, Date startDate) {
         List<Flight> results = new ArrayList<>();
@@ -46,6 +49,7 @@ public class SpiderFlight {
         crawlTaskList(source, destination, startDate).forEach(crawlTask -> futures.add(spiderExec.submit(crawlTask)));
         for (Future<List<Flight>> fs : futures) {
             try {
+                // todo: 去重
                 results.addAll(fs.get());
             } catch (InterruptedException e) {
                 System.out.println("InterruptedException");

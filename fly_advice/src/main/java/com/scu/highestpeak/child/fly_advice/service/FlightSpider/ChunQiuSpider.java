@@ -30,12 +30,15 @@ public class ChunQiuSpider extends AbstractCrawlTask {
     @Override
     Request buildRequest() {
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-        String dccode = this.getSource();
-        String accode = this.getDestination();
+        Airport source = this.source;
+        Airport destination = this.destination;
         Date startDate = this.getStart();
-        ChunQiuSpiderRequestVO chunQiuSpiderRequestVO = new ChunQiuSpiderRequestVO(
-                new ChunQiuSpiderRequestVO.SearchItem(dccode, accode, startDate)
-        );
+        ChunQiuSpiderRequestVO chunQiuSpiderRequestVO = new ChunQiuSpiderRequestVO()
+                .setSourceCity(source.getCityName())
+                .setArriveCity(destination.getCityName())
+                .setSourceAirportCode(source.getIATACode())
+                .setArriveAirportCode(destination.getIATACode())
+                .setDtime(startDate);
         RequestBody body = RequestBody.create(mediaType, chunQiuSpiderRequestVO.toString());
         Request request = new Request.Builder()
                 .url(CHUN_QIU_TARGET_URL)
@@ -67,7 +70,7 @@ public class ChunQiuSpider extends AbstractCrawlTask {
                                     formatResponseDate.parse(routeObject.getString("DepartureTime")),
                                     formatResponseDate.parse(routeObject.getString("ArrivalTime"))
                             ).newPriceEntry(
-                                    currAircraftCabin.getString("CabinLevel"),
+                                    currAircraftCabin.get("CabinLevel").toString(),
                                     firstAircraftCabinInfo.getDouble("Price")
                             )
                     );

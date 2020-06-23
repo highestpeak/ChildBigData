@@ -11,16 +11,26 @@ import java.util.Date;
 public class FlySection extends AbstractFlightPlanSection {
     private static final String SECTION_LINE_TYPE = "line";
 
+    /**
+     * 起止地点
+     */
     @NotBlank
     private String startPlace;
     @NotBlank
     private String endPlace;
+
+    /**
+     * 飞行航班
+     */
     @NotBlank
     private Flight flight;
 
     @Positive
     private Integer remainingVotes;
 
+    /**
+     * 舱位类型
+     */
     private CABIN_CLASS cabinClass;
 
     public FlySection() {
@@ -50,11 +60,6 @@ public class FlySection extends AbstractFlightPlanSection {
     public FlySection setFlight(Flight flight) {
         this.flight = flight;
         return this;
-    }
-
-    @Override
-    public Integer calculateScore() {
-        return score;
     }
 
     public static String getSectionLineType() {
@@ -91,5 +96,10 @@ public class FlySection extends AbstractFlightPlanSection {
     public FlySection setCabinClass(CABIN_CLASS cabinClass) {
         this.cabinClass = cabinClass;
         return this;
+    }
+
+    @Override
+    public Integer calculateScore() {
+        return score;
     }
 }

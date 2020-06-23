@@ -10,6 +10,9 @@ import java.util.Date;
  * @author highestpeak
  */
 public class FlightSearchDTO {
+    /**
+     * todo: 提供的地点：机场完整三字码、机场完整名字
+     */
     @NotBlank(message = "必须提供出发地")
     private String startPlace;
     private Boolean inboundAltEnabled;
