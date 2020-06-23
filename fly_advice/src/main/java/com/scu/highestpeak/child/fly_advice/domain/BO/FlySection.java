@@ -99,6 +99,11 @@ public class FlySection extends AbstractFlightPlanSection {
     }
 
     @Override
+    public String getSegmentType() {
+        return SECTION_LINE_TYPE;
+    }
+
+    @Override
     public Integer calculateScore() {
         return score;
     }

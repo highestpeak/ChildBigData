@@ -17,7 +17,7 @@ public interface FlightStrategy {
         ADVICE
     }
 
-    List<FlyPlan> strategy(Airport source, Airport destination, Date startDate);
+    List<FlyPlan> strategy(Airport source, Airport destination, Date startDate, Date rtnDate);
 
     STRATEGY name();
 }

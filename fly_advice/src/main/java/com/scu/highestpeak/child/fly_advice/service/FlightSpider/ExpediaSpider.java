@@ -3,18 +3,24 @@ package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.ExpediaSpiderRequestVO;
+import com.scu.highestpeak.child.fly_advice.domain.RVO.FlightCrawl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author gtrong
@@ -22,7 +28,8 @@ import java.util.List;
  */
 public class ExpediaSpider extends AbstractCrawlTask {
     private static final String EXPEDIA_TARGET_URL = "https://www.expedia.com/flight/search/";
-    private static SimpleDateFormat formatResponseDate = new SimpleDateFormat("d/M/y");
+    private static DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_DATE_TIME;
+    private static final String SUPPLIER_NAME = "Expedia";
 
     public ExpediaSpider(Airport source, Airport destination, Date startDate) {
         super(source, destination, startDate);
@@ -55,37 +62,31 @@ public class ExpediaSpider extends AbstractCrawlTask {
         return request;
     }
 
+    private Date parseDate(String jsonTime){
+        TemporalAccessor accessor = timeFormatter.parse(jsonTime);
+        Date date = Date.from(Instant.from(accessor));
+        return date;
+    }
+
     @Override
-    List<Flight> parseDataToFlights(String jsonData) {
-        int count = 0;
+    synchronized List<Flight> parseDataToFlights(String jsonData) {
         List<Flight> flights = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONObject jsonObject1 = jsonObject.getJSONObject("content").getJSONObject("legs");
         Iterator<String> stringIterator = jsonObject1.keys();
         while (stringIterator.hasNext()) {
-            count++;
             String key = stringIterator.next();
             JSONObject value = jsonObject1.getJSONObject(key);
-            try {
-                flights.add(new Flight(
-                        value.getJSONArray("timeline").getJSONObject(0).getJSONObject("carrier").getString(
-                                "airlineName"),
-                        value.getJSONArray("timeline").getJSONObject(0).getJSONObject("carrier").getString(
-                                "flightNumber"),
-                        value.getJSONArray("timeline").getJSONObject(0).getJSONObject("carrier").getString("plane"),
-                        formatResponseDate.parse(
-                                value.getJSONObject("departureTime").getString("date")
-                        ),
-                        formatResponseDate.parse(
-                                value.getJSONObject("arrivalTime").getString("date")),
-                        value.getJSONObject("price").getDouble("exactPrice")
-                ));
-            } catch (ParseException e) {
-                System.out.println("parse error");
-            }
-        }
-        if (count == 0) {
-            return null;
+            JSONObject carrier = value.getJSONArray("timeline").getJSONObject(0).getJSONObject("carrier");
+            flights.add(new FlightCrawl(
+                            carrier.getString("airlineName"),
+                            carrier.getString("airlineCode") + carrier.getString("flightNumber"),
+                            carrier.getString("plane"),
+                            parseDate(value.getJSONObject("departureTime").getString("isoStr")),
+                            parseDate(value.getJSONObject("arrivalTime").getString("isoStr")),
+                            value.getJSONObject("price").getDouble("exactPrice")
+                    ).addSupplier(SUPPLIER_NAME)
+            );
         }
         return flights;
     }

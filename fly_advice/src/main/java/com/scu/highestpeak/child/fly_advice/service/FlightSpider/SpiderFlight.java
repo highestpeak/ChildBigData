@@ -2,10 +2,9 @@ package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
 import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
+import com.scu.highestpeak.child.fly_advice.domain.RVO.FlightCrawl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -42,21 +41,31 @@ public class SpiderFlight {
      * todo: 把所有 供应商 的异常都抛出，在这个类里处理这一级异常
      *  添加供应商模块
      *  修改flight为子类
+     *  机票购买页面由前端拼接
      */
     public static List<Flight> crawl(Airport source, Airport destination, Date startDate) {
-        List<Flight> results = new ArrayList<>();
         List<Future<List<Flight>>> futures = new ArrayList<>();
+        ConcurrentHashMap<String, Flight> codeFlightMap = new ConcurrentHashMap<>();
         crawlTaskList(source, destination, startDate).forEach(crawlTask -> futures.add(spiderExec.submit(crawlTask)));
         for (Future<List<Flight>> fs : futures) {
             try {
-                // todo: 去重
-                results.addAll(fs.get());
+                List<Flight> searched = fs.get();
+                searched.forEach(flight -> {
+                    Map.Entry<String, Double> onlySupplier = ((FlightCrawl)flight).peekOnlySupplier();
+                    String flightNumber = flight.getFlightNumber();
+                    if (!codeFlightMap.containsKey(flightNumber)){
+                        codeFlightMap.put(flightNumber,flight);
+                    }else {
+                        ((FlightCrawl)codeFlightMap.get(flightNumber))
+                                .addSupplier(onlySupplier.getKey(),onlySupplier.getValue());
+                    }
+                });
             } catch (InterruptedException e) {
                 System.out.println("InterruptedException");
             } catch (ExecutionException e) {
                 System.out.println("ExecutionException");
             }
         }
-        return results;
+        return new ArrayList<>(codeFlightMap.values());
     }
 }

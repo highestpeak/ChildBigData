@@ -15,7 +15,7 @@ public class DefaultDirectStrategy implements FlightStrategy {
     private static final int DIRECT_DEFAULT_ORDER = 0;
 
     @Override
-    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate) {
+    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate, Date rtnDate) {
         FlySection flightSection = new FlySection(
                 DIRECT_DEFAULT_ORDER, "",
                 source.getName(), destination.getName()

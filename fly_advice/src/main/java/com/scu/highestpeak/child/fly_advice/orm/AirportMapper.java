@@ -26,15 +26,25 @@ public interface AirportMapper {
     @ResultMap(value="AirportMap")
     List<Airport> selectAllAirports();
 
+    @Select("select * from airport where IATA <> #{IATACode} ")
+    @ResultMap(value="AirportMap")
+    List<Airport> selectAllAirportsExcept(String IATACode);
+
+    @Select("select * from airport where level = 1")
+    @ResultMap(value="AirportMap")
+    List<Airport> selectHotAirports();
+
     @Select("select * from airport where name = #{query} or IATA = #{query}")
     @ResultMap(value="AirportMap")
     Airport selectAirportByNameOrIATA(String query);
 
     @Select("select * from airport where " +
             "latitude between #{latitudeRange[0]} and #{latitudeRange[1]} and " +
-            "longitude between #{longitudeRange[0]} and #{longitudeRange[1]}")
+            "longitude between #{longitudeRange[0]} and #{longitudeRange[1]} and " +
+            "IATA <> #{IATACode} ")
     @ResultMap(value="AirportMap")
     List<Airport> boundAirports(
+            String IATACode,
             double[] latitudeRange,
             double[] longitudeRange
     );

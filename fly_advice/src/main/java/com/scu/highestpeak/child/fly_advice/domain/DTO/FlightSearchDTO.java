@@ -11,7 +11,10 @@ import java.util.Date;
  */
 public class FlightSearchDTO {
     /**
-     * todo: 提供的地点：机场完整三字码、机场完整名字
+     * todo: 校验：提供的地点：机场完整三字码、机场完整名字
+     *  不能在 这个类里做联合参数校验，必须在controller处校验数据，因为这个类的字段注入顺序是未知的
+     *
+     * todo: 选择供应商
      */
     @NotBlank(message = "必须提供出发地")
     private String startPlace;
@@ -23,6 +26,7 @@ public class FlightSearchDTO {
 
     @DateTimeFormat(pattern = "yyyyMMdd")
     @FutureOrPresent
+    @NotBlank
     private Date startDate;
 
     private CABIN_CLASS cabinClass;
@@ -38,7 +42,7 @@ public class FlightSearchDTO {
      */
     private Boolean preferStop;
     /**
-     * future: 暂时默认 转机一次
+     * assume:暂时默认 转机一次
      */
     private Boolean preferTransfer;
 
@@ -52,25 +56,12 @@ public class FlightSearchDTO {
                            Date rtnDate, boolean preferDirects, boolean preferStop, boolean preferTransfer,
                            boolean outboundAltEnabled,
                            boolean inboundAltEnabled, int remainingVotes) {
-        if (startPlace.equals(endPlace)) {
-            throw new RuntimeException("出发地和返回地不能相同");
-        }
         this.startPlace = startPlace;
         this.endPlace = endPlace;
         this.startDate = startDate;
 
-        if (cabinClass == null) {
-            throw new RuntimeException("必须提供舱位类型");
-        }
         this.cabinClass = cabinClass;
 
-        // future: 添加异常到全局 exceptionhandle 类处
-        if ((rtn) && (rtnDate == null)) {
-            throw new RuntimeException("必须提供返程日期");
-        }
-        if (!rtnDate.after(startDate)) {
-            throw new RuntimeException("出发日期必须早于返回日期");
-        }
         this.rtn = rtn;
         this.rtnDate = rtnDate;
         this.preferDirects = preferDirects;
@@ -93,7 +84,6 @@ public class FlightSearchDTO {
 
     public FlightSearchDTO setCabinClass(CABIN_CLASS cabinClass) {
         this.cabinClass = cabinClass;
-        assertCabinClassRight();
         return this;
     }
 
@@ -104,7 +94,6 @@ public class FlightSearchDTO {
 
     public FlightSearchDTO setRtnDate(Date rtnDate) {
         this.rtnDate = rtnDate;
-        assertRtnDateRight();
         return this;
     }
 
@@ -130,13 +119,11 @@ public class FlightSearchDTO {
 
     public FlightSearchDTO setStartPlace(String startPlace) {
         this.startPlace = startPlace.toUpperCase();
-        assertSourceDestinationNotEqual();
         return this;
     }
 
     public FlightSearchDTO setEndPlace(String endPlace) {
         this.endPlace = endPlace.toUpperCase();
-        assertSourceDestinationNotEqual();
         return this;
     }
 
@@ -157,64 +144,53 @@ public class FlightSearchDTO {
         return startDate;
     }
 
+    public Date getRtnDate() {
+        return rtnDate;
+    }
+
     public CABIN_CLASS getCabinClass() {
         return cabinClass;
     }
 
     public Boolean getOutboundAltEnabled() {
-        return outboundAltEnabled;
+        return outboundAltEnabled==null?false:outboundAltEnabled;
     }
 
     public Boolean getInboundAltEnabled() {
-        return inboundAltEnabled;
+        return inboundAltEnabled==null?false:inboundAltEnabled;
     }
 
     public Boolean getRtn() {
-        return rtn;
+        return rtn==null?false:rtn;
     }
 
     public Boolean getPreferDirects() {
-        return preferDirects;
+        return preferDirects==null?false:preferDirects;
     }
 
     public Boolean getPreferStop() {
-        return preferStop;
+        return preferStop==null?false:preferStop;
     }
 
     public Boolean getPreferTransfer() {
-        return preferTransfer;
+        return preferTransfer==null?false:preferTransfer;
     }
 
     public Integer getRemainingVotes() {
-        return remainingVotes;
-    }
-
-    public void switchSourceDestination() {
-        String tmp = this.startPlace;
-        this.setStartPlace(endPlace);
-        this.setEndPlace(tmp);
+        return remainingVotes==null?0:remainingVotes;
     }
 
     /**
-     * future: 防错处理
+     * 防错处理
       */
     public void assertSourceDestinationNotEqual() {
-        if (startPlace == null || endPlace == null) {
-            return;
-        }
         if (startPlace.equals(endPlace)) {
             throw new RuntimeException("出发地和返回地不能相同");
         }
     }
 
     public void assertRtnDateRight() {
-        if (rtn == null) {
-            return;
-        }
         if (rtn){
-            if (startDate==null){
-                throw new RuntimeException("必须提供出发日期");
-            }
             if (rtnDate == null) {
                 throw new RuntimeException("必须提供返程日期");
             }

@@ -4,11 +4,12 @@ import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.FlyPlan;
 import com.scu.highestpeak.child.fly_advice.orm.AirportMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author highestpeak
@@ -32,7 +33,8 @@ import java.util.stream.Collectors;
  */
 public class TransferOneStrategy implements FlightStrategy {
     private DefaultDirectStrategy directStrategy;
-    @Autowired
+    private static final int MAX_FIRST_SECTION = 2;
+    private static final int MAX_SECOND_SECTION = 2;
     private AirportMapper airportMapper;
 
     public TransferOneStrategy() {
@@ -40,15 +42,28 @@ public class TransferOneStrategy implements FlightStrategy {
     }
 
     @Override
-    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate) {
+    public List<FlyPlan> strategy(Airport source, Airport destination, Date startDate, Date rtnDate) {
         // 转机一次，就是把每个机场放到 起止机场之间算计划价格
-        List<Airport> airportList = airportMapper.selectAllAirports();
+        // 为了速度和便利性，只前往最热门机场转机
+        if (airportMapper == null) {
+            return new ArrayList<>();
+        }
+
+        //todo: 用spark训练，找出每个机场，向每个机场转场的最好的转机机场，
+        // 这里就选择那些机场
+        // fixme: 这里临时采用的是，随机排序机场，然后选出热门机场的三分之一
+        List<Airport> airportList = airportMapper.selectHotAirports();
+        Collections.shuffle(airportList);
+        airportList = airportList.subList(0, airportList.size() / 3);
         Predicate<Airport> notSource = (s) -> !s.equals(source);
         Predicate<Airport> notDestination = (s) -> !s.equals(destination);
-        return airportList.stream()
+        List<FlyPlan> results = airportList.stream()
                 .filter(notSource.and(notDestination))
                 .flatMap(stop -> find(source, stop, destination, startDate).stream())
                 .collect(Collectors.toList());
+
+        // change strange name
+        return results.stream().map(flyPlan -> flyPlan.setStrategy(name().toString())).collect(Collectors.toList());
     }
 
     /**
@@ -56,19 +71,31 @@ public class TransferOneStrategy implements FlightStrategy {
      */
     private List<FlyPlan> find(Airport source, Airport stop, Airport destination, Date startDate) {
         // 对于每一机场的入航班和出航班，保证出航班在入航班之后
-        List<FlyPlan> goSections = directStrategy.strategy(source, stop, startDate);
+        List<FlyPlan> goSections = directStrategy.strategy(source, stop, startDate, null);
+        goSections = goSections.stream()
+                .sorted(Comparator.comparing(FlyPlan::calculateScore))
+                .limit(MAX_FIRST_SECTION)
+                .collect(Collectors.toList());
 
+        List<FlyPlan> finalSections = new ArrayList<>();
         // 对每一个计划第一段生成第二段，连接第一段和第二段
-        goSections.forEach(beforePlan ->
-                directStrategy.strategy(
-                        stop, destination, beforePlan.lastSection().getEndTime()
-                ).forEach(beforePlan::joinPlan)
-        );
-        return goSections;
+        for (FlyPlan beforePlan : goSections) {
+            directStrategy.strategy(stop, destination, beforePlan.lastSection().getEndTime(), null)
+                    .stream()
+                    .sorted(Comparator.comparing(FlyPlan::calculateScore))
+                    .limit(MAX_SECOND_SECTION)
+                    .forEach(afterPlan -> finalSections.add(beforePlan.joinPlanRtn(afterPlan)));
+        }
+        return finalSections;
     }
 
     @Override
     public STRATEGY name() {
         return STRATEGY.TRANSFER;
+    }
+
+    public TransferOneStrategy setAirportMapper(AirportMapper airportMapper) {
+        this.airportMapper = airportMapper;
+        return this;
     }
 }

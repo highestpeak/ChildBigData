@@ -25,7 +25,7 @@ public class FlightService {
     AirportService airportService;
 
     /**
-     * todo: 调用spark进行模型预测
+     * future: 调用spark进行模型预测
      * 根据以往价格预测今年价格
      * 时间序列预测、统计回归
      *
@@ -82,14 +82,15 @@ public class FlightService {
      * @param airportPair 起止机场
      * @return 飞行计划
      */
-    private FlyPlanGroup generateFlyPlan(FlightStrategy strategy, Date startDate, Airport[] airportPair) {
+    private FlyPlanGroup generateFlyPlan(FlightStrategy strategy, Date startDate, Date endDate, Airport[] airportPair) {
         // stream exception handle
         FlyPlanGroup flyPlanGroup = new FlyPlanGroup(
                 strategy.name().toString(),
                 strategy.strategy(
                         airportPair[0],
                         airportPair[1],
-                        startDate
+                        startDate,
+                        endDate
                 )
         );
         return flyPlanGroup;
@@ -110,9 +111,8 @@ public class FlightService {
         List<Airport> startAirports = new ArrayList<Airport>() {{
             add(airportService.searchAirport(flightArgs.getStartPlace()));
         }};
-        if (startAirports.size()==0){
-            //todo: 封装 error message
-            return null;
+        if (startAirports.size() == 0) {
+            throw new RuntimeException("未检索到出发机场");
         }
         if (flightArgs.getInboundAltEnabled()) {
             startAirports.addAll(airportService.boundAltAirport(flightArgs.getStartPlace()));
@@ -120,9 +120,8 @@ public class FlightService {
         List<Airport> endAirports = new ArrayList<Airport>() {{
             add(airportService.searchAirport(flightArgs.getEndPlace()));
         }};
-        if (endAirports.size()==0){
-            //todo: 封装 error message
-            return null;
+        if (endAirports.size() == 0) {
+            throw new RuntimeException("未检索到到达机场");
         }
         if (flightArgs.getOutboundAltEnabled()) {
             endAirports.addAll(airportService.boundAltAirport(flightArgs.getEndPlace()));
@@ -132,13 +131,14 @@ public class FlightService {
                 .collect(Collectors.toList());
 
         // 根据 args 生成策略列表
-        Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap = StrategyBuilder.buildStrategyList(flightArgs);
+        Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap = StrategyBuilder.buildStrategyList(flightArgs,airportService.airportMapper);
 
         // 对所有机场对应用策略，收集飞行计划列表
         Map<String, List<FlyPlan>> flyPlanList = flightStrategyMap.entrySet().stream()
                 .flatMap(
                         strategy -> airportPairList.stream().map(
-                                pair -> generateFlyPlan(strategy.getValue(), flightArgs.getStartDate(), pair)
+                                pair -> generateFlyPlan(strategy.getValue(), flightArgs.getStartDate(),
+                                        flightArgs.getRtnDate(), pair)
                         )
                 ).flatMap(
                         flyPlanGroup -> flyPlanGroup.getFlyPlanList().stream()
@@ -166,6 +166,7 @@ public class FlightService {
         flyPlanList.entrySet().removeIf(planEntry -> planEntry.getValue().stream().allMatch(flightPlanSatisfy));
 
         // 对每一个计划进行评分
+        // future：: 相对于该机场航班的平均时间进行评分
         flyPlanList.forEach((s, flyPlans) -> flyPlans.forEach(FlyPlan::calculateScore));
 
         return flyPlanList;

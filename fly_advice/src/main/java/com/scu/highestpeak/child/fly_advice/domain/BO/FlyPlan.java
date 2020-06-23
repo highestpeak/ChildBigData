@@ -1,5 +1,7 @@
 package com.scu.highestpeak.child.fly_advice.domain.BO;
 
+import org.springframework.beans.BeanUtils;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
@@ -24,6 +26,10 @@ public class FlyPlan {
     @Min(MIN_SCORE)
     @Max(MAX_SCORE)
     private Integer score;
+    private Boolean scoreCalculated=false;
+
+    public FlyPlan() {
+    }
 
     public FlyPlan(String strategy, List<AbstractFlightPlanSection> sections, Integer score) {
         this.strategy = strategy;
@@ -57,6 +63,10 @@ public class FlyPlan {
         return flightSections;
     }
 
+    public AbstractFlightPlanSection firstSection() {
+        return flightSections.stream().reduce((first, second) -> first).orElse(null);
+    }
+
     public AbstractFlightPlanSection lastSection() {
         return flightSections.stream().reduce((first, second) -> second).orElse(null);
     }
@@ -65,18 +75,36 @@ public class FlyPlan {
      * 连接飞行计划
      * @param after 接在本计划后的飞行计划
      */
-    public void joinPlan(FlyPlan after) {
+    public FlyPlan joinPlanRtn(FlyPlan after) {
+        FlyPlan newPlan = new FlyPlan();
+        BeanUtils.copyProperties(this, newPlan);
+        newPlan.flightSections=new ArrayList<>(this.flightSections);
+        newPlan.flightSections.addAll(after.getFlightSections());
+        return newPlan;
+    }
+
+    public void joinPlanNoRtn(FlyPlan after) {
         this.flightSections.addAll(after.getFlightSections());
     }
 
     /**
      * future:评分
+     * @return
      */
-    public void calculateScore() {
+    public Integer calculateScore() {
+        if (scoreCalculated){
+            return score;
+        }
         score = (int) flightSections.stream()
                 .map(AbstractFlightPlanSection::calculateScore)
                 .mapToInt(Integer::intValue)
                 .average()
                 .orElse(0.0);
+        scoreCalculated = true;
+        return score;
+    }
+
+    public Integer getScore() {
+        return score;
     }
 }

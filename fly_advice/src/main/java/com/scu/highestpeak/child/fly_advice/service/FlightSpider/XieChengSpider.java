@@ -2,6 +2,7 @@ package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 
 import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
+import com.scu.highestpeak.child.fly_advice.domain.RVO.FlightCrawl;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.XieChengSpiderRequestVO;
 import okhttp3.*;
 import org.json.JSONArray;
@@ -9,6 +10,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +22,9 @@ import java.util.List;
  */
 public class XieChengSpider extends AbstractCrawlTask {
     private static final String XIE_CHENG_TARGET_URL = "https://m.ctrip.com/restapi/soa2/14022/flightListSearch";
-    // private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+    private static final String FORMAT_DATE_STR = "yyyy-MM-dd HH:mm:ss";
+    private static final String SUPPLIER_NAME = "携程旅行";
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(FORMAT_DATE_STR);
 
     public XieChengSpider(Airport source, Airport destination, Date startDate) {
         super(source, destination, startDate);
@@ -32,22 +37,21 @@ public class XieChengSpider extends AbstractCrawlTask {
         String accode = this.getDestination();
         Date startDate = this.getStart();
         XieChengSpiderRequestVO xieChengSpiderRequestVO = new XieChengSpiderRequestVO(
-                new ArrayList<XieChengSpiderRequestVO.SearchItem>(){{
+                new ArrayList<XieChengSpiderRequestVO.SearchItem>() {{
                     add(new XieChengSpiderRequestVO.SearchItem(dccode, accode, startDate));
                 }}
         );
-        RequestBody body = RequestBody.create(mediaType,xieChengSpiderRequestVO.toString());
+        RequestBody body = RequestBody.create(mediaType, xieChengSpiderRequestVO.toString());
         Request request = new Request.Builder()
                 .url(XIE_CHENG_TARGET_URL)
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Cookie", "JSESSIONID=261CD2681368BE00581F7480372CFFEF")
                 .build();
         return request;
     }
 
     @Override
-    List<Flight> parseDataToFlights(String jsonData) {
+    synchronized List<Flight> parseDataToFlights(String jsonData) {
         JSONArray airportArray = new JSONObject(jsonData).getJSONArray("fltitem");
         List<Flight> flights = new ArrayList<>();
         for (int i = 0; i < airportArray.length(); i++) {
@@ -60,27 +64,26 @@ public class XieChengSpider extends AbstractCrawlTask {
                     craftinfo.getString("kind") +
                     craftinfo.getString("craft");
             JSONObject dateinfo = firstMutilstn.getJSONObject("dateinfo");
-            JSONObject dportinfo = firstMutilstn.getJSONObject("dportinfo");
-            JSONObject aportinfo = firstMutilstn.getJSONObject("aportinfo");
 
             JSONObject firstPolicyinfo = jsonObject.getJSONArray("policyinfo").getJSONObject(0);
             JSONObject firstAportinfo = firstPolicyinfo.getJSONArray("priceinfo").getJSONObject(0);
 
-            try {
-                flights.add(new Flight(
-                        basinfo.getString("airsname"),
-                        basinfo.getString("flgno"),
-                        aircraftModel,
-                        new SimpleDateFormat("yyyy-MM-dd").parse(dateinfo.getString("ddate")),
-                        new SimpleDateFormat("yyyy-MM-dd").parse(dateinfo.getString("adate")),
-                        firstAportinfo.getDouble("price")
-                ));
-            } catch (ParseException e) {
-                System.out.println("parse error");
-            }
+            flights.add(new FlightCrawl(
+                            basinfo.getString("airsname"),
+                            basinfo.getString("flgno"),
+                            aircraftModel,
+                            generateDate(dateinfo.getString("ddate")),
+                            generateDate(dateinfo.getString("adate")),
+                            firstAportinfo.getDouble("price")
+                    ).addSupplier(SUPPLIER_NAME)
+            );
 
         }
         return flights;
+    }
+
+    private Date generateDate(String toParse) {
+        return Date.from(LocalDateTime.parse(toParse, dateTimeFormatter).atZone(ZoneId.systemDefault()).toInstant());
     }
 
     @Override

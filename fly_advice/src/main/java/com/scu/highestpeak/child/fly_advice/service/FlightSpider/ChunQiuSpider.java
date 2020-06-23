@@ -3,6 +3,7 @@ package com.scu.highestpeak.child.fly_advice.service.FlightSpider;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Airport;
 import com.scu.highestpeak.child.fly_advice.domain.BO.Flight;
 import com.scu.highestpeak.child.fly_advice.domain.RVO.ChunQiuSpiderRequestVO;
+import com.scu.highestpeak.child.fly_advice.domain.RVO.FlightCrawl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -11,6 +12,10 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +26,9 @@ import java.util.List;
  */
 public class ChunQiuSpider extends AbstractCrawlTask {
     private static final String CHUN_QIU_TARGET_URL = "https://flights.ch.com/Flights/SearchByTime";
-    private static SimpleDateFormat formatResponseDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final String SUPPLIER_NAME = "春秋航空";
+    private static final String FORMAT_DATE_STR = "yyyy-MM-dd HH:mm:ss";
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(FORMAT_DATE_STR);
 
     public ChunQiuSpider(Airport source, Airport destination, Date startDate) {
         super(source, destination, startDate);
@@ -51,34 +58,39 @@ public class ChunQiuSpider extends AbstractCrawlTask {
     }
 
     @Override
-    List<Flight> parseDataToFlights(String jsonData) {
+    synchronized List<Flight> parseDataToFlights(String jsonData) {
         JSONArray flightArray = new JSONObject(jsonData).getJSONArray("Route");
         List<Flight> flights = new ArrayList<>();
         for (int i = 0; i < flightArray.length(); i++) {
             JSONObject routeObject = flightArray.getJSONArray(i).getJSONObject(0);
             JSONArray cabinArray = routeObject.getJSONArray("AircraftCabins");
+            FlightCrawl flightCrawl = null;
+            flightCrawl = new FlightCrawl(
+                    routeObject.getString("CompanyName"),
+                    routeObject.getString("No"),
+                    routeObject.getString("Type"),
+                    generateDate(routeObject.getString("DepartureTime")),
+                    generateDate(routeObject.getString("ArrivalTime"))
+            );
+            if (flightCrawl == null) {
+                continue;
+            }
             for (int j = 0; j < cabinArray.length(); j++) {
                 JSONObject currAircraftCabin = cabinArray.getJSONObject(j);
                 JSONObject firstAircraftCabinInfo =
                         currAircraftCabin.getJSONArray("AircraftCabinInfos").getJSONObject(0);
-                try {
-                    flights.add(
-                            new Flight(
-                                    routeObject.getString("CompanyName"),
-                                    routeObject.getString("No"),
-                                    routeObject.getString("Type"),
-                                    formatResponseDate.parse(routeObject.getString("DepartureTime")),
-                                    formatResponseDate.parse(routeObject.getString("ArrivalTime"))
-                            ).newPriceEntry(
-                                    currAircraftCabin.get("CabinLevel").toString(),
-                                    firstAircraftCabinInfo.getDouble("Price")
-                            )
-                    );
-                } catch (ParseException e) {
-                    System.out.println("parse error");
-                }
+                flightCrawl.newPriceEntry(
+                        currAircraftCabin.get("CabinLevel").toString(),
+                        firstAircraftCabinInfo.getDouble("Price")
+                );
+
             }
+            flights.add(flightCrawl.addSupplier(SUPPLIER_NAME));
         }
         return flights;
+    }
+
+    private Date generateDate(String toParse) {
+        return Date.from(LocalDateTime.parse(toParse, dateTimeFormatter).atZone(ZoneId.systemDefault()).toInstant());
     }
 }

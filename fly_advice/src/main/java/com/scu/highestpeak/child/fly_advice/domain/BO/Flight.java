@@ -69,6 +69,9 @@ public class Flight {
     }
 
     public double getPrice() {
+        if (price==0 && priceMap!=null){
+            return priceMap.values().stream().sorted().findFirst().orElse(0.0);
+        }
         return price;
     }
 

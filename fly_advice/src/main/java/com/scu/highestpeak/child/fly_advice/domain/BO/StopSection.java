@@ -19,6 +19,11 @@ public class StopSection extends AbstractFlightPlanSection {
     }
 
     @Override
+    public String getSegmentType() {
+        return SECTION_STOP_TYPE;
+    }
+
+    @Override
     public Integer calculateScore() {
         return score;
     }
