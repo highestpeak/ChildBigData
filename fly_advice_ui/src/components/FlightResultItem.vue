@@ -2,39 +2,46 @@
   <el-collapse-item :name="itemName">
     <!-- 头部 -->
     <template slot="title">
-      <div class="titleHeader">
-        <!-- 航空公司图标 -->
-        <el-avatar icon="el-icon-user-solid"></el-avatar>
-        <!-- 具体航班信息 -->
-        <div class="legInfo">
-          <!-- 出发地 -->
-          <div class="endpoint" style="text-align: right;">
-            <span class="time">17:45</span>
-            <span class="place">CTU</span>
+      <div class="sectionContainer">
+        <div class="section" v-for="(section,index) in flyPlan.sections" :key="index">
+          <!-- 航空公司图标 -->
+          <!-- <el-avatar icon="el-icon-user-solid"></el-avatar> -->
+          <div style="line-height:20px;font-weight:700;width:125px;" class="airline">
+            {{section.airline}}
+            <br />
+            {{section.flightNumber}}
           </div>
-          <!-- 经停和类型 -->
-          <div class="between">
-            <div>2小时35分</div>
-            <ul class="stopLine">
-              <i class="fa fa-telegram fa-1x" aria-hidden="true"></i>
-            </ul>
-            <div>直飞</div>
-          </div>
-          <!-- 到达地 -->
-          <div class="endpoint" style="text-align: left;">
-            <span class="time">20:20</span>
-            <span class="place">SHA</span>
+          <!-- 具体航班信息 -->
+          <div class="legInfo">
+            <!-- 出发地 -->
+            <div class="endpoint" style="text-align: right;">
+              <span class="time">{{section.startTime}}</span>
+              <span class="place">{{section.startPlace}}</span>
+            </div>
+            <!-- 经停和类型 -->
+            <div class="between">
+              <div>{{section.during.str}}</div>
+              <ul class="stopLine">
+                <i class="fa fa-telegram fa-1x" aria-hidden="true"></i>
+              </ul>
+              <div>直飞</div>
+            </div>
+            <!-- 到达地 -->
+            <div class="endpoint" style="text-align: left;">
+              <span class="time">{{section.endTime}}</span>
+              <span class="place">{{section.endPlace}}</span>
+            </div>
           </div>
         </div>
-        <!-- 最低价格 -->
-        <div class="cost" style="color: lightcoral;">325￥</div>
       </div>
+      <!-- 最低价格 -->
+      <div class="cost" style="color: lightcoral;min-width:80px">{{flyPlan.lowestCashCost}}￥</div>
     </template>
 
     <!-- 所有价格 -->
-    <div v-for="index in 5" :key="index" class="priceItem">
+    <div v-for="(supplier,index) in flyPlan.supplier" :key="index" class="priceItem">
       <div class="agentDetail">
-        <span style="font-size: 1rem;line-height: 1.25rem;font-weight: 400;">携程旅行</span>
+        <span style="font-size: 1rem;line-height: 1.25rem;font-weight: 400;">{{supplier.name}}</span>
         <div style="display: flex;margin: .375rem 0;">
           <el-rate
             v-model="value"
@@ -49,9 +56,9 @@
         </div>
       </div>
       <div class="priceDetail" style="color: #e36387;">
-          370￥
-          <el-button icon="el-icon-s-promotion"  round>选择</el-button>
-        </div>
+        {{supplier.price}}￥
+        <el-button icon="el-icon-s-promotion" round>选择</el-button>
+      </div>
     </div>
   </el-collapse-item>
 </template>
@@ -59,7 +66,7 @@
 <script>
 export default {
   name: "FlightResultItem",
-  props: ["itemName"],
+  props: ["itemName", "flyPlan"],
   data() {
     return {
       value: 3.7
@@ -79,20 +86,34 @@ export default {
 .el-collapse-item__header .el-collapse-item__arrow {
   display: none;
 }
-
-.titleHeader {
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.section {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 100%;
   align-items: center;
   padding: 5px 10px;
-  margin: 20px 0px;
+  margin: 5px 0px;
 }
 
-.titleHeader .cost {
+.cost {
   font-size: 25px;
   font-weight: 700;
+  padding: 15px;
+}
+/* airline */
+.airline {
+  font-family: arial;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: oblique 25deg;
+  color: #10375c;
 }
 
 /* 中间的时间信息 */
@@ -176,12 +197,12 @@ export default {
   font-weight: 700;
   font-size: 20px;
 }
-.priceDetail *{
-    margin: auto 5px;
+.priceDetail * {
+  margin: auto 5px;
 }
 .priceDetail .el-button:hover {
-    color: #64bb70;
-    border-color: #18a18f;
-    outline: 0;
+  color: #64bb70;
+  border-color: #18a18f;
+  outline: 0;
 }
 </style>

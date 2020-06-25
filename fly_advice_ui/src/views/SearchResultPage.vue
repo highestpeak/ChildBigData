@@ -27,6 +27,7 @@
     <!-- 结果页面 -->
     <SearchResult
       v-loading="loading"
+      :resultList="flightList"
       v-show="true"
       element-loading-text="航班搜索中"
       element-loading-spinner="fa fa-refresh fa-spin fa-3x fa-fw"
@@ -47,9 +48,10 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
       fromHomePage: false,
       warnShowing:false,
+      flightList:[],
 
       muti: false,
       toSearch: null
@@ -83,8 +85,12 @@ export default {
       }
     },
     async getFlightList(){
-      var flightList =  searchFlight('test');
-      console.log(flightList);
+      this.flightList = []
+      this.loading = true;
+      var flightList = await searchFlight('test');
+      // console.log(flightList);
+      this.loading = false;
+      this.flightList = flightList
     }
   },
   created() {

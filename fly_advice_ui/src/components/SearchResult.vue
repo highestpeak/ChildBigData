@@ -1,6 +1,5 @@
 <template>
   <el-container direction="vertical" style="display: inline-block;width:900px;">
-    
     <!-- 排序选项卡 -->
     <el-radio-group
       v-model="activeRadioLabel"
@@ -18,11 +17,28 @@
           <div slot="content" v-html="methoud.description" class="tooltipText"></div>
         </el-tooltip>
       </el-radio-button>
+      <el-radio-button>
+        <el-tooltip class="item" placement="top" effect="light">
+          <ResultSortButton :title="otherMethoud.title" :price="otherMethoud.price" :time="otherMethoud.time" />
+          <div slot="content" v-html="otherMethoud.description" class="tooltipText"></div>
+        </el-tooltip>
+      </el-radio-button>
     </el-radio-group>
+
+    <transition name="el-zoom-in-center" v-show="activeRadioLabel===3">
+      <div>
+        
+      </div>
+    </transition>
 
     <!-- 航班列表 -->
     <el-collapse v-model="activeIndex" style="margin-top: 10px;">
-      <FlightResultItem v-for="index in 1" :key="index" :itemName="index" />
+      <FlightResultItem
+        v-for="(flight,index) in resultList"
+        :key="index"
+        :itemName="index"
+        :flyPlan="flight"
+      />
     </el-collapse>
   </el-container>
 </template>
@@ -32,16 +48,14 @@ import ResultSortButton from "@/components/ResultSortButton.vue";
 import FlightResultItem from "@/components/FlightResultItem.vue";
 export default {
   name: "SearchResult",
-  props:[
-    'resultList'
-  ],
+  props: ["resultList"],
   components: {
     ResultSortButton,
     FlightResultItem
   },
   data() {
     return {
-      activeIndex:1,
+      activeIndex: -1,
       // 排序方式选项卡
       activeRadioLabel: 0,
       sortMethoudGroup: [
@@ -67,25 +81,77 @@ export default {
           price: "522￥",
           time: "2小时30分",
           description: "按最短飞行时长排序"
-        },
-      ]
+        }
+      ],
+      otherMethoud:{
+          label: 3,
+          title: "更多筛选项",
+          price: "------￥",
+          time: "小时/分",
+          description: "您可以选择更复杂的筛选（为了保证页面的简洁，我们隐藏了他们）"
+      },
 
       //
     };
   },
   methods: {
+    sortBySorce() {
+      var buttonTochange = this.sortMethoudGroup[0];
+      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
+      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+    },
+    sortByCashCost() {
+      this.resultList.sort(function(a, b) {
+        if (a.lowestCashCost < b.lowestCashCost) {
+          return -1;
+        }
+        if (a.lowestCashCost > b.lowestCashCost) {
+          return 1;
+        }
+        return 0;
+      });
+      var buttonTochange = this.sortMethoudGroup[1];
+      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
+      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+    },
+    sortByTimeCost() {
+      this.resultList.sort(function(a, b) {
+        if (a.totalDuringTime.ms < b.totalDuringTime.ms) {
+          return -1;
+        }
+        if (a.totalDuringTime.ms > b.totalDuringTime.ms) {
+          return 1;
+        }
+        return 0;
+      });
+      var buttonTochange = this.sortMethoudGroup[2];
+      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
+      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+    },
+
     handle() {
-      // alert("tab, event");
-    },
-    handleClick(tab, event) {
-      console.log(tab, event);
-    },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(this.activeRadioLabel);
+      switch (this.activeRadioLabel) {
+        case 0:
+          this.sortBySorce();
+          break;
+        case 1:
+          this.sortByCashCost();
+          break;
+        case 2:
+          this.sortByTimeCost();
+          break;
+        default:
+          break;
+      }
+      // console.log(this.resultList)
     }
+  },
+  created() {
+    // console.log(this.resultList)
+    this.sortByCashCost();
+    this.sortByTimeCost();
+    this.sortBySorce();
   }
 };
 </script>
@@ -94,7 +160,7 @@ export default {
 /* .alertInfo {
 } */
 
-.el-alert--info.is-light{
+.el-alert--info.is-light {
   background-color: #e7dfd5;
   color: #204051;
 }
@@ -114,12 +180,13 @@ export default {
   font-size: 1rem;
 }
 
-.el-collapse-item{
+.el-collapse-item {
   margin: 36px 0px;
   box-shadow: 1px 1px 6px 0px #88888882;
 }
 
-.el-collapse-item, *{
+.el-collapse-item,
+* {
   border: 0;
 }
 
