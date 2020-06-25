@@ -1,22 +1,6 @@
 <template>
   <el-container direction="vertical" style="display: inline-block;width:900px;">
-    <!-- 消息提示公告 -->
-    <el-alert
-      class="alertInfo"
-      title="消息提示"
-      type="info"
-      description="以防您的旅行计划有变或取消。请务必在预订前阅读航空公司的具体条款。"
-      show-icon
-      style="text-align:left;margin:5px auto;"
-    ></el-alert>
-    <el-alert
-      class="alertInfo"
-      title="消息提示"
-      type="info"
-      description="我们建议您在预订前咨询那些可能允许机票退改的航空公司和旅行中介。"
-      show-icon
-      style="text-align:left;margin:5px auto;"
-    ></el-alert>
+    
     <!-- 排序选项卡 -->
     <el-radio-group
       v-model="activeRadioLabel"
@@ -25,8 +9,8 @@
       style="margin-top: 10px;"
     >
       <el-radio-button
-        v-for="methoud in sortMethoudGroup"
-        v-bind:key="methoud"
+        v-for="(methoud,index) in sortMethoudGroup"
+        :key="index"
         :label="methoud.label"
       >
         <el-tooltip class="item" placement="top" effect="light">
@@ -37,8 +21,8 @@
     </el-radio-group>
 
     <!-- 航班列表 -->
-    <el-collapse v-model="activeNames" @change="handleChange" style="margin-top: 10px;">
-      <FlightResultItem v-for="index in 10" :key="index" :itemName="index" />
+    <el-collapse v-model="activeIndex" style="margin-top: 10px;">
+      <FlightResultItem v-for="index in 1" :key="index" :itemName="index" />
     </el-collapse>
   </el-container>
 </template>
@@ -48,12 +32,16 @@ import ResultSortButton from "@/components/ResultSortButton.vue";
 import FlightResultItem from "@/components/FlightResultItem.vue";
 export default {
   name: "SearchResult",
+  props:[
+    'resultList'
+  ],
   components: {
     ResultSortButton,
     FlightResultItem
   },
   data() {
     return {
+      activeIndex:1,
       // 排序方式选项卡
       activeRadioLabel: 0,
       sortMethoudGroup: [
@@ -79,7 +67,7 @@ export default {
           price: "522￥",
           time: "2小时30分",
           description: "按最短飞行时长排序"
-        }
+        },
       ]
 
       //
@@ -103,7 +91,12 @@ export default {
 </script>
 
 <style>
-.alertInfo {
+/* .alertInfo {
+} */
+
+.el-alert--info.is-light{
+  background-color: #e7dfd5;
+  color: #204051;
 }
 
 .el-radio-button,

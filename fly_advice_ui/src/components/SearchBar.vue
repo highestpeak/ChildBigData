@@ -18,11 +18,7 @@
               @select="handleSourceSelect(0)"
             ></el-autocomplete>
 
-            <el-button
-              class="fa fa-exchange fa-3g"
-              type="success"
-              @click="switchSourchDestination"
-            ></el-button>
+            <el-button class="fa fa-exchange fa-3g" type="success" @click="switchSourchDestination"></el-button>
 
             <el-autocomplete
               v-model="destinationPlace"
@@ -101,14 +97,19 @@
               placeholder="出发日期"
             ></el-date-picker>
 
-            <el-button icon="el-icon-close" type="danger" :disabled="index===0" 
+            <el-button
+              icon="el-icon-close"
+              type="danger"
+              :disabled="index===0"
               @click="delOneOfMuti(index)"
             ></el-button>
           </div>
 
           <div class="searchOption">
-            <el-button icon="el-icon-plus" style="max-width:400px;margin-bottom:10px"
-            @click="addOneOfMuti"
+            <el-button
+              icon="el-icon-plus"
+              style="max-width:400px;margin-bottom:10px"
+              @click="addOneOfMuti"
             >添加另一个航班</el-button>
             <el-select
               v-model="cabinClass"
@@ -124,7 +125,12 @@
                 :value="item.value"
               ></el-option>
             </el-select>
-            <el-button icon="el-icon-search" type="danger" style="margin-left:20px;width:100px"  @click="mutiLineSearch"></el-button>
+            <el-button
+              icon="el-icon-search"
+              type="danger"
+              style="margin-left:20px;width:100px"
+              @click="mutiLineSearch"
+            ></el-button>
           </div>
         </div>
       </transition>
@@ -135,7 +141,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import { searchAirportPrefix } from "@/utils/SimpleSearch";
+
 import { airportsCached } from "@/utils/LocalCacheData";
 export default {
   name: "SearchBar",
@@ -169,9 +175,7 @@ export default {
       ],
 
       // 多程输入选项
-      mutiPassList:[
-        {sourcePlace:"",destinationPlace:"",startDate:""}
-      ],
+      mutiPassList: [{ sourcePlace: "", destinationPlace: "", startDate: "" }],
 
       // timeout: null,
 
@@ -218,16 +222,16 @@ export default {
     },
 
     // future:
-    handleSourceSelect(source) {
-
+    handleSourceSelect(source) {},
+    handleDestinationSelect(destination) {},
+    addOneOfMuti() {
+      this.mutiPassList.push({
+        sourcePlace: "",
+        destinationPlace: "",
+        startDate: ""
+      });
     },
-    handleDestinationSelect(destination) {
-
-    },
-    addOneOfMuti(){
-      this.mutiPassList.push({sourcePlace:"",destinationPlace:"",startDate:""});
-    },
-    delOneOfMuti(delIndex){
+    delOneOfMuti(delIndex) {
       this.mutiPassList.splice(delIndex, 1);
     },
     flightTypeChanged(flightTypeSelected) {
@@ -246,14 +250,39 @@ export default {
     },
 
     // 点击搜索
-    oneLineSearch(){
+    oneLineSearch() {
       // todo: 处理输入错误
       // 页面跳转 https://router.vuejs.org/zh/guide/essentials/navigation.html
-      this.$router.push({ name: 'SearchResult', params: { userId: '123' }})
+      this.$router.push({
+        name: "SearchResult",
+        params: {
+          muti: false,
+          toSearch: {
+            sourcePlace:this.sourcePlace,
+            destinationPlace:this.destinationPlace,
+            startDate:this.startDate,
+            endDate:this.endDate,
+            cabinClass:this.cabinClass,
+            sourceNear:this.sourceNear,
+            destinationNear:this.destinationNear,
+            onlyDirect:this.onlyDirect,
+          }
+        }
+      }); // router end
     },
-    mutiLineSearch(){
+    mutiLineSearch() {
       // todo: 处理输入错误
-    },
+      this.$router.push({
+        name: "SearchResult",
+        params: {
+          muti: true,
+          toSearch: {
+            items:this.mutiPassList,
+            cabinClass:this.cabinClass,
+          }
+        }
+      }); // router end
+    }
   },
   mounted() {}
 };

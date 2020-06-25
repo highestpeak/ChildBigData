@@ -13,6 +13,11 @@
     <transition name="el-fade-in-linear">
       <router-view />
     </transition>
+
+    <div style="margin:50px 0px;font-weight:700;">
+      <a class="repoLink" href="https://github.com/highestpeak/ChildBigData" target="_blank">
+      BUILD BY CHILD BIG DATA</a> | POWER BY VUE AND SPRING
+    </div>
   </div>
 </template>
 
@@ -36,12 +41,15 @@ body {
   padding: 30px;
 }
 
+.repoLink,
 #nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+.repoLink:hover,
+#nav a.router-link-exact-active,
+#nav a:hover {
   color: #42b983;
 }
 </style>
