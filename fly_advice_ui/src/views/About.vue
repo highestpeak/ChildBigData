@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div  style="background-color:#f5f5f5">
+    <div>
       <SearchBar />
     </div>
     

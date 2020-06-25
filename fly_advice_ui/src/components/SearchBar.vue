@@ -13,7 +13,7 @@
         @select="handleSelect"
       ></el-autocomplete>
 
-      <el-button class="fa fa-exchange fa-3g" type="info" plain></el-button>
+      <el-button class="fa fa-exchange fa-3g" type="success"></el-button>
 
       <el-autocomplete
         v-model="state"
@@ -49,6 +49,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import {searchAirportPrefix} from '@/utils/SimpleSearch'
 
 export default {
   name: "SearchBar",
@@ -116,17 +117,21 @@ export default {
         { value: "新麦甜四季甜品炸鸡", address: "嘉定区曹安公路2383弄55号" }
       ];
     },
-    querySearchAsync(queryString, cb) {
+    async querySearchAsync(queryString, cb) {
       var restaurants = this.restaurants;
-      var results = queryString
-        ? restaurants.filter(this.createStateFilter(queryString))
-        : restaurants;
-
+      // var results = queryString
+      //   ? restaurants.filter(this.createStateFilter(queryString))
+      //   : restaurants;
+      //   console.log(results)
+      console.log(1);
+      var results = await searchAirportPrefix(queryString);
+      console.log(3);
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         cb(results);
       }, 3000 * Math.random());
     },
+    // 过滤字符串，改变格式
     createStateFilter(queryString) {
       return state => {
         return (
