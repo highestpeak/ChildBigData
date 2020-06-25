@@ -15,7 +15,7 @@ public class DefaultRoundTripStrategy implements FlightStrategy {
     /**
      * 来程可能太多，所以限制数量
      */
-    private static final int MAX_ROUND_TRIP_FIRST_LINE = 20;
+    private static final int MAX_ROUND_TRIP_FIRST_LINE = 10;
 
     public DefaultRoundTripStrategy() {
         directStrategy = new DefaultDirectStrategy();
