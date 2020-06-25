@@ -23,6 +23,7 @@ async function searchAirportPrefix(nameInput) {
         .then(function () {
             // always executed
         });
+    console.log(airportList)
     var airportStrList = [];
     for (let index = 0; index < airportList.length; index++) {
         const airport = airportList[index];
@@ -33,7 +34,7 @@ async function searchAirportPrefix(nameInput) {
           address: airport['name']
         })
     }
-    // console.log(airportStrList)
+    console.log(airportStrList)
     return airportStrList;
 }
 export {

@@ -1,47 +1,133 @@
 <template>
   <div class="searchBar" style="display: inline-block;width:1000px;">
-    <el-radio-group v-model="radio" class="searchOption">
-      <el-radio :label="3">单程</el-radio>
-      <el-radio :label="6">往返</el-radio>
-      <el-radio :label="9">多程</el-radio>
+    <el-radio-group v-model="flightType" class="searchOption" @change="flightTypeChanged">
+      <el-radio label="单程">单程</el-radio>
+      <el-radio label="往返">往返</el-radio>
+      <el-radio label="多程">多程</el-radio>
     </el-radio-group>
-    <div class="searchInput">
-      <el-autocomplete
-        v-model="state"
-        :fetch-suggestions="querySearchAsync"
-        placeholder="出发地 城市/机场"
-        @select="handleSelect"
-      ></el-autocomplete>
+    <div class="searchContent">
+      <!-- 单程和往返的UI -->
+      <transition :name="!isMultiPass?'el-zoom-in-center':'el-zoom-out-center'">
+        <div class="oneLineInput" v-show="!isMultiPass">
+          <div class="searchInput">
+            <el-autocomplete
+              v-model="sourcePlace"
+              :fetch-suggestions="querySearchAsync"
+              :trigger-on-focus="false"
+              placeholder="出发地 城市/机场"
+              @select="handleSourceSelect(0)"
+            ></el-autocomplete>
 
-      <el-button class="fa fa-exchange fa-3g" type="success"></el-button>
+            <el-button
+              class="fa fa-exchange fa-3g"
+              type="success"
+              @click="switchSourchDestination"
+            ></el-button>
 
-      <el-autocomplete
-        v-model="state"
-        :fetch-suggestions="querySearchAsync"
-        placeholder="到达地 城市/机场"
-        @select="handleSelect"
-      ></el-autocomplete>
+            <el-autocomplete
+              v-model="destinationPlace"
+              :fetch-suggestions="querySearchAsync"
+              :trigger-on-focus="false"
+              placeholder="到达地 城市/机场"
+              @select="handleDestinationSelect(0)"
+            ></el-autocomplete>
 
-      <el-date-picker v-model="value1" type="date" style="max-width:150px;" placeholder="出发日期"></el-date-picker>
-      <el-date-picker v-model="value2" type="date" style="max-width:150px;" placeholder="返回日期"></el-date-picker>
+            <el-date-picker
+              v-model="startDate"
+              type="date"
+              style="max-width:150px;"
+              placeholder="出发日期"
+            ></el-date-picker>
+            <el-date-picker
+              v-model="endDate"
+              type="date"
+              style="max-width:150px;"
+              placeholder="返回日期"
+              :disabled="flightType==='单程'"
+            ></el-date-picker>
 
-      <el-select v-model="value1" multiple placeholder="舱位类型" collapse-tags="false">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        ></el-option>
-      </el-select>
-      <el-button icon="el-icon-search" type="danger"></el-button>
-    </div>
+            <el-select v-model="cabinClass" multiple collapse-tags placeholder="舱位类型">
+              <el-option
+                v-for="item in cabinOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+            <el-button icon="el-icon-search" type="danger" @click="oneLineSearch"></el-button>
+          </div>
 
-    <div class="searchOption">
-      <el-checkbox v-model="near1">出发地附近机场</el-checkbox>
-      <el-checkbox v-model="near2">到达地附近机场</el-checkbox>
-    </div>
-    <div class="searchOption">
-      <el-checkbox v-model="onlyDirect">仅直飞</el-checkbox>
+          <div class="searchOption">
+            <el-checkbox v-model="sourceNear">出发地附近机场</el-checkbox>
+            <el-checkbox v-model="destinationNear">到达地附近机场</el-checkbox>
+          </div>
+          <div class="searchOption">
+            <el-checkbox v-model="onlyDirect">仅直飞</el-checkbox>
+          </div>
+        </div>
+      </transition>
+
+      <!-- 多程的UI -->
+      <transition :name="isMultiPass?'el-zoom-in-center':'el-zoom-out-center'">
+        <div class="mutiLineInput" v-show="isMultiPass">
+          <div class="searchInput" v-for="(currPass,index) in mutiPassList" :key="index">
+            <el-autocomplete
+              v-model="currPass.sourcePlace"
+              :fetch-suggestions="querySearchAsync"
+              :trigger-on-focus="false"
+              placeholder="出发地 城市/机场"
+              @select="handleSourceSelect(index)"
+            ></el-autocomplete>
+
+            <el-button
+              class="fa fa-arrow-right fa-3g"
+              style="max-width:400px;margin-left:10px;margin-right:10px"
+              type="danger"
+              disabled
+            ></el-button>
+
+            <el-autocomplete
+              v-model="currPass.destinationPlace"
+              :fetch-suggestions="querySearchAsync"
+              :trigger-on-focus="false"
+              placeholder="到达地 城市/机场"
+              @select="handleDestinationSelect(index)"
+            ></el-autocomplete>
+
+            <el-date-picker
+              v-model="currPass.startDate"
+              type="date"
+              style="max-width:400px;margin-left:10px;margin-right:10px"
+              placeholder="出发日期"
+            ></el-date-picker>
+
+            <el-button icon="el-icon-close" type="danger" :disabled="index===0" 
+              @click="delOneOfMuti(index)"
+            ></el-button>
+          </div>
+
+          <div class="searchOption">
+            <el-button icon="el-icon-plus" style="max-width:400px;margin-bottom:10px"
+            @click="addOneOfMuti"
+            >添加另一个航班</el-button>
+            <el-select
+              v-model="cabinClass"
+              multiple
+              collapse-tags
+              placeholder="舱位类型"
+              style="max-width:400px;margin-bottom:10px;margin-left:20px;"
+            >
+              <el-option
+                v-for="item in cabinOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+            <el-button icon="el-icon-search" type="danger" style="margin-left:20px;width:100px"  @click="mutiLineSearch"></el-button>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -49,19 +135,21 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import {searchAirportPrefix} from '@/utils/SimpleSearch'
-
+import { searchAirportPrefix } from "@/utils/SimpleSearch";
+import { airportsCached } from "@/utils/LocalCacheData";
 export default {
   name: "SearchBar",
   components: {},
   data() {
     return {
-      restaurants: [],
-      state: "",
-      timeout: null,
-      value1: "",
-      value2: "",
-      options: [
+      flightType: "单程",
+      // 单程输入选项
+      sourcePlace: "",
+      destinationPlace: "",
+      startDate: "",
+      endDate: "",
+      cabinClass: "",
+      cabinOptions: [
         {
           value: "选项1",
           label: "经济舱"
@@ -77,75 +165,97 @@ export default {
         {
           value: "选项4",
           label: "超级经济舱"
-        },
+        }
       ],
-      radio: 3,
-      near1: false,
-      near2: false,
+
+      // 多程输入选项
+      mutiPassList:[
+        {sourcePlace:"",destinationPlace:"",startDate:""}
+      ],
+
+      // timeout: null,
+
+      isMultiPass: false, // 是否多程
+      sourceNear: false,
+      destinationNear: false,
       onlyDirect: false
     };
   },
   methods: {
-    loadAll() {
-      return [
-        { value: "三全鲜食（北新泾店）", address: "长宁区新渔路144号" },
-        {
-          value: "Hot honey 首尔炸鸡（仙霞路）",
-          address: "上海市长宁区淞虹路661号"
-        },
-        {
-          value: "新旺角茶餐厅",
-          address: "上海市普陀区真北路988号创邑金沙谷6号楼113"
-        },
-        { value: "泷千家(天山西路店)", address: "天山西路438号" },
-        {
-          value: "胖仙女纸杯蛋糕（上海凌空店）",
-          address: "上海市长宁区金钟路968号1幢18号楼一层商铺18-101"
-        },
-        { value: "贡茶", address: "上海市长宁区金钟路633号" },
-        {
-          value: "豪大大香鸡排超级奶爸",
-          address: "上海市嘉定区曹安公路曹安路1685号"
-        },
-        {
-          value: "茶芝兰（奶茶，手抓饼）",
-          address: "上海市普陀区同普路1435号"
-        },
-        { value: "十二泷町", address: "上海市北翟路1444弄81号B幢-107" },
-        { value: "星移浓缩咖啡", address: "上海市嘉定区新郁路817号" },
-        { value: "阿姨奶茶/豪大大", address: "嘉定区曹安路1611号" },
-        { value: "新麦甜四季甜品炸鸡", address: "嘉定区曹安公路2383弄55号" }
-      ];
-    },
-    async querySearchAsync(queryString, cb) {
-      var restaurants = this.restaurants;
-      // var results = queryString
-      //   ? restaurants.filter(this.createStateFilter(queryString))
-      //   : restaurants;
-      //   console.log(results)
-      console.log(1);
-      var results = await searchAirportPrefix(queryString);
-      console.log(3);
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-        cb(results);
-      }, 3000 * Math.random());
+    /* 联想查询 */
+    // 从本地缓存查找 机场列表
+    querySearchAsync(queryString, cb) {
+      var results = queryString
+        ? airportsCached.filter(this.createStateFilter(queryString))
+        : airportsCached;
+      var finalResults = [];
+      for (let index = 0; index < results.length; index++) {
+        const airportFound = results[index];
+        finalResults.push({
+          value: airportFound["name"] + "(" + airportFound["IATA"] + ")",
+          airport: airportFound
+        });
+      }
+      // console.log(finalResults)
+      cb(finalResults);
+      // clearTimeout(this.timeout);
+      // this.timeout = setTimeout(() => {
+      //   cb(finalResults);
+      // }, 1000);
     },
     // 过滤字符串，改变格式
     createStateFilter(queryString) {
-      return state => {
-        return (
-          state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-        );
+      return airport => {
+        var airportStr = airport["name"] + "(" + airport["IATA"] + ")";
+        return airportStr.indexOf(queryString) != -1;
       };
     },
-    handleSelect(item) {
-      console.log(item);
-    }
+
+    switchSourchDestination() {
+      var tmp = this.sourcePlace;
+      this.sourcePlace = this.destinationPlace;
+      this.destinationPlace = tmp;
+    },
+
+    // future:
+    handleSourceSelect(source) {
+
+    },
+    handleDestinationSelect(destination) {
+
+    },
+    addOneOfMuti(){
+      this.mutiPassList.push({sourcePlace:"",destinationPlace:"",startDate:""});
+    },
+    delOneOfMuti(delIndex){
+      this.mutiPassList.splice(delIndex, 1);
+    },
+    flightTypeChanged(flightTypeSelected) {
+      if (flightTypeSelected === "单程") {
+        // console.log("单程");
+        this.isMultiPass = false;
+      }
+      if (flightTypeSelected === "往返") {
+        // console.log("往返");
+        this.isMultiPass = false;
+      }
+      if (flightTypeSelected === "多程") {
+        // console.log("多程");
+        this.isMultiPass = true;
+      }
+    },
+
+    // 点击搜索
+    oneLineSearch(){
+      // todo: 处理输入错误
+      // 页面跳转 https://router.vuejs.org/zh/guide/essentials/navigation.html
+      this.$router.push({ name: 'SearchResult', params: { userId: '123' }})
+    },
+    mutiLineSearch(){
+      // todo: 处理输入错误
+    },
   },
-  mounted() {
-    this.restaurants = this.loadAll();
-  }
+  mounted() {}
 };
 </script>
 
@@ -175,28 +285,27 @@ export default {
   margin: 0px 10px;
 }
 
-.searchInput *{
-    margin: 10px 0px;
+.searchInput * {
+  margin: 10px 0px;
 }
-.searchBar .el-radio-group .el-radio{
-    margin: 20px 10px;
+.searchBar .el-radio-group .el-radio {
+  margin: 20px 10px;
 }
 .searchOption * {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
 </style>
 
 <style>
 /* 搜索选项颜色 */
 .el-checkbox__input.is-checked .el-checkbox__inner,
 .searchOption .is-checked .el-radio__inner {
-    border-color: #32e0c4;
-    background: #32e0c4;
+  border-color: #32e0c4;
+  background: #32e0c4;
 }
-.el-radio__input.is-checked+.el-radio__label,
-.el-checkbox__input.is-checked+.el-checkbox__label {
-    color: #32e0c4;
+.el-radio__input.is-checked + .el-radio__label,
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #32e0c4;
 }
 </style>

@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "hello",
+  name: "Center",
   data(){
       return{
           namex:"",

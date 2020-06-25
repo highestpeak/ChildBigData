@@ -5,10 +5,10 @@
 
     <div id="nav">
       <router-link to="/">HomeSearch</router-link>|
-      <router-link to="/about">SearchResult</router-link>|
+      <router-link to="/searchResult">SearchResult</router-link>|
       <router-link to="/map">MapAnalysis</router-link>|
       <router-link to="/chart">ChartAnalysis</router-link>|
-      <router-link to="/hello">Center</router-link>
+      <router-link to="/center">Center</router-link>
     </div>
     <transition name="el-fade-in-linear">
       <router-view />
