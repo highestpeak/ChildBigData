@@ -1,11 +1,13 @@
 <template>
   <div class="m-map">
-    <div id="js-container" class="map">正在加载数据 ...</div>
+    <div id="js-container" class="map">
+      正在加载地图
+      <i class="fa fa-spinner fa-spin fa-5x fa-fw" aria-hidden="true"></i> 
+    </div>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
 import remoteLoad from "@/utils/remoteLoad.js";
 import { MapKey, MapCityName } from "@/api.js";
 export default {

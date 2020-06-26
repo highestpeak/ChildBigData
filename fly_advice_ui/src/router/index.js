@@ -4,26 +4,11 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/center',
-    name: 'Center',
-    component: () => import('../views/Center.vue')
-  },
-  {
-    path: '/map',
-    name: 'Map',
-    component: () => import('../views/MapAnalysis.vue')
-  },
-  {
-    path: '/chart',
-    name: 'Chart',
-    component: () => import('../views/ChartView.vue')
   },
   {
     path: '/searchResult',
@@ -33,7 +18,33 @@ Vue.use(VueRouter)
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/SearchResultPage.vue'),
     props: true
-  }
+  },
+  {
+    path: '/selectResult',
+    name: 'SelectResult',
+    component: () => import('../views/SelectResult.vue'),
+    props: true
+  },
+  {
+    path: '/dataAnalysis',
+    name: 'DataAnalysis',
+    component: () => import('../views/DataAnalysis.vue')
+  },
+  {
+    path: '/flytoWhere',
+    name: 'FlytoWhere',
+    component: () => import('../views/FlytoWhere.vue')
+  },
+  {
+    path: '/chart',
+    name: 'Chart',
+    component: () => import('../views/ChartView.vue')
+  },
+  {
+    path: '/center',
+    name: 'Center',
+    component: () => import('../views/Center.vue')
+  },
 ]
 
 const router = new VueRouter({

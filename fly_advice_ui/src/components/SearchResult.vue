@@ -1,5 +1,5 @@
 <template>
-  <el-container direction="vertical" style="display: inline-block;width:900px;">
+  <el-container direction="vertical" style="display: inline-block;width:900px;" class="searchResult">
     <!-- 排序选项卡 -->
     <el-radio-group
       v-model="activeRadioLabel"
@@ -19,7 +19,11 @@
       </el-radio-button>
       <el-radio-button>
         <el-tooltip class="item" placement="top" effect="light">
-          <ResultSortButton :title="otherMethoud.title" :price="otherMethoud.price" :time="otherMethoud.time" />
+          <ResultSortButton
+            :title="otherMethoud.title"
+            :price="otherMethoud.price"
+            :time="otherMethoud.time"
+          />
           <div slot="content" v-html="otherMethoud.description" class="tooltipText"></div>
         </el-tooltip>
       </el-radio-button>
@@ -27,7 +31,7 @@
 
     <transition name="el-zoom-in-center" v-show="activeRadioLabel===3">
       <div>
-        
+        <!-- todo: 其他排序方式 -->
       </div>
     </transition>
 
@@ -83,22 +87,28 @@ export default {
           description: "按最短飞行时长排序"
         }
       ],
-      otherMethoud:{
-          label: 3,
-          title: "更多筛选项",
-          price: "------￥",
-          time: "小时/分",
-          description: "您可以选择更复杂的筛选（为了保证页面的简洁，我们隐藏了他们）"
-      },
+      otherMethoud: {
+        label: 3,
+        title: "更多筛选项",
+        price: "------￥",
+        time: "小时/分",
+        description:
+          "您可以选择更复杂的筛选（为了保证页面的简洁，我们隐藏了他们）"
+      }
 
       //
     };
   },
   methods: {
+    changeMethoudGroupButton(index){
+      if (buttonTochange) {
+        var buttonTochange = this.sortMethoudGroup[index];
+        buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
+        buttonTochange.time = this.resultList[0].totalDuringTime.str;
+      }
+    },
     sortBySorce() {
-      var buttonTochange = this.sortMethoudGroup[0];
-      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
-      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+      this.changeMethoudGroupButton(0);
     },
     sortByCashCost() {
       this.resultList.sort(function(a, b) {
@@ -110,9 +120,7 @@ export default {
         }
         return 0;
       });
-      var buttonTochange = this.sortMethoudGroup[1];
-      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
-      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+      this.changeMethoudGroupButton(1);
     },
     sortByTimeCost() {
       this.resultList.sort(function(a, b) {
@@ -124,9 +132,7 @@ export default {
         }
         return 0;
       });
-      var buttonTochange = this.sortMethoudGroup[2];
-      buttonTochange.price = this.resultList[0].lowestCashCost + "￥";
-      buttonTochange.time = this.resultList[0].totalDuringTime.str;
+      this.changeMethoudGroupButton(2);
     },
 
     handle() {
@@ -157,9 +163,6 @@ export default {
 </script>
 
 <style>
-/* .alertInfo {
-} */
-
 .el-alert--info.is-light {
   background-color: #e7dfd5;
   color: #204051;
@@ -180,55 +183,13 @@ export default {
   font-size: 1rem;
 }
 
-.el-collapse-item {
+.searchResult .el-collapse-item {
   margin: 36px 0px;
   box-shadow: 1px 1px 6px 0px #88888882;
 }
 
-.el-collapse-item,
+.searchResult .el-collapse-item,
 * {
   border: 0;
 }
-
-/* .el-row {
-  margin-bottom: 20px;
-}
-.el-row:last-child {
-  margin-bottom: 0;
-}
-
-.el-col {
-  border-radius: 4px;
-}
-.bg-Navy {
-  background: #003d79;
-}
-.white {
-  color: #ffffff;
-  text-align: left;
-}
-.black {
-  color: #000000;
-  text-align: right;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
-}
-
-.el-aside {
-  color: #333;
-} */
 </style>

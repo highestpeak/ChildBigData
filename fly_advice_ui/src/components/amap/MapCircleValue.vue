@@ -46,8 +46,7 @@ export default {
         console.log(iconStyles);
         var circleStyle =
           '<div style="width: 100%;">\
-        <div style="width:70px;height:70px;background-color:#127681;opacity:0.5;border-radius:50%;"></div>\
-    </div>';
+        <div style="width:70px;height:70px;background-color:#127681;opacity:0.5;border-radius:50%;"></div></div>';
         for (var i = 0; i < capitals.length; i += 1) {
           // https://lbs.amap.com/api/amap-ui/reference-amap-ui/overlay/simplemarker
           new SimpleMarker({
