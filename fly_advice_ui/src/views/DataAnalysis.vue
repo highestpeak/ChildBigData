@@ -74,10 +74,10 @@
         </div>
       </el-col>
     </el-row>
-    
+
     <h1>省份到达图</h1>
     <div id="DistinctMap" style="height:500px; margin: 20px auto;border: #000 solid 2px;">
-        <i class="fa fa-spinner fa-spin fa-4x fa-fw" aria-hidden="true"></i>
+      <i class="fa fa-spinner fa-spin fa-4x fa-fw" aria-hidden="true"></i>
     </div>
     <div id="RadarChart" style="width:1000px;height:500px; margin: 20px auto;"></div>
     <div id="HeartMapChart" style="width:1000px;height:500px; margin: 20px auto;"></div>
@@ -110,7 +110,7 @@ export default {
     };
   },
   async created() {
-      await initAmap();
+    await initAmap();
     this.initAllDestinationFlightMap();
     this.initDistinctMap();
   },
@@ -127,8 +127,7 @@ export default {
       };
     },
     // 画航线图
-     initAllDestinationFlightMap() {
-
+    initAllDestinationFlightMap() {
       var currAirport = findInfoOfAirport("name", "北京首都国际机场");
       var destinationAirportList = [
         findInfoOfAirport("name", "上海虹桥国际机场"),
@@ -175,7 +174,7 @@ export default {
     },
 
     // 地域来源 图
-     initDistinctMap() {
+    initDistinctMap() {
       var currAirport = findInfoOfAirport("name", "北京首都国际机场");
       var start = this.parseLocation(currAirport);
       var mapConfig = {

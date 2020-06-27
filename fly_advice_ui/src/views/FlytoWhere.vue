@@ -1,56 +1,68 @@
 <template>
   <div style="display: block;overflow: auto;" class="FlytoWhere">
-    <!-- 搜索输入框 -->
-    <el-input
-      v-model="airportToSearch"
-      :trigger-on-focus="false"
-      placeholder="北京首都国际机场"
-      style="margin: 18px 0px;width: 61%;border: #000 solid 2px;border: #000 solid 2px;"
-    >
-      <template slot="prepend" style="border: #000 solid 3px;">选择分析机场</template>
-      <el-button slot="append" icon="el-icon-search"></el-button>
-    </el-input>
-    <el-button
-      icon="el-icon-search"
-      style="font-weight: 700;
-  font-size: 14px;border: #000 solid 2px;background-color: #e7dfd5;"
-    ></el-button>
-
-    <MapCircleValue v-if="amapReady" class="mapbox" />
+    <div class="inlineSearch">
+      <!-- 搜索输入框 -->
+      <el-input
+        v-model="airportToSearch"
+        :trigger-on-focus="false"
+        placeholder="北京首都国际机场"
+        style="border: #000 solid 2px;"
+      >
+        <template slot="prepend" style="border: #000 solid 3px;">选择出发机场</template>
+      </el-input>
+      <el-date-picker
+        v-model="dateValue"
+        type="date"
+        placeholder="选择日期"
+        style="border: #000 solid 2px;"
+      ></el-date-picker>
+      <el-button
+        icon="el-icon-search"
+        style="font-weight: 700;font-size: 14px;border: #000 solid 2px;background-color: #e7dfd5;"
+      ></el-button>
+    </div>
+    <div id="FlyWhereMap" style="width:80%;height:800px; margin: 20px auto;border: #000 solid 2px;">
+      <i class="fa fa-spinner fa-spin fa-4x fa-fw" aria-hidden="true"></i>
+    </div>
   </div>
 </template>
 <script>
 // 每天航班最繁忙的时间段是哪些？
-
-import MapCircleValue from "@/components/amap/MapCircleValue.vue";
-import { remoteLoad } from "@/utils/remoteLoad.js";
-import { MapKey, MapCityName } from "@/api.js";
+import { initAmap } from "@/utils/remoteLoad.js";
+import {
+  initMapUI,
+  getAmapMap,
+  buildCircleValueMap
+} from "@/utils/AmapOption.js";
 export default {
   name: "FlytoWhere",
   components: {
-    MapCircleValue
   },
   data() {
     return {
       amapReady: false,
-      airportToSearch: ""
+      airportToSearch: "",
+      dateValue:"",
     };
   },
   async created() {
-    if (window.AMap && window.AMapUI) {
-      // 未载入高德地图API，则先载入API再初始化
-      this.amapReady = true;
-    } else {
-      // console.log("parent 1");
-      await remoteLoad(`http://webapi.amap.com/maps?v=1.4.15&key=${MapKey}`);
-      await remoteLoad("http://webapi.amap.com/ui/1.0/main.js");
-
-      this.amapReady = true;
-      // console.log("parent 1 after");
-    }
-    // console.log("parent 2");
+    await initAmap();
+    this.initCircleValueMap();
   },
-  methods: {}
+  methods: {
+    initCircleValueMap() {
+      var currMapId = "FlyWhereMap";
+      var map = getAmapMap(this, currMapId);
+      initMapUI(this, "overlay/SimpleMarker", SimpleMarker => {
+         var markDataArray = [
+           {text:"北京1001",pos:[116.39,39.78]},
+           {text:"上海2010",pos:[121.8,31.15]},
+           {text:"成都3421",pos:[103.96,30.58]},
+         ];
+         var simpleMarkerList = buildCircleValueMap(markDataArray,map, SimpleMarker);
+      });
+    }
+  }
 };
 </script>
 
@@ -80,4 +92,30 @@ export default {
   font-weight: 700;
   font-size: 20px;
 }
+
+.inlineSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0px auto;
+  width: 50%;
+}
+/* .inlineSearch .block{
+display: inline-flex;
+line-height: 40px;
+padding: 3px 10px;
+
+position: relative;
+height: 40px;
+width: 350px;
+}
+
+.xxxx{
+display: inline-block;
+line-height: 1;
+padding: 12px 20px;
+
+margin: 0;
+white-space: nowrap;
+cursor: pointer;
+} */
 </style>

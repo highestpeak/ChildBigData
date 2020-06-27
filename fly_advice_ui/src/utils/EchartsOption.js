@@ -87,7 +87,7 @@ function buildLineChartOption(xData, series, dataZoom = false,grid=null) {
  * @param {boolean} markPoint 是否显示最低最高值标记
  * @param {boolean} markLine 是否显示平均值线
  */
-function buildSeries(name, points, markPoint = false, markLine = false) {
+function buildSeries(name, points, markPoint = false, markLine = false,bar=false) {
     var series = {
         name: name,
         stack: name,
@@ -117,6 +117,10 @@ function buildSeries(name, points, markPoint = false, markLine = false) {
                 { type: 'average', name: '平均值' }
             ]
         };
+    }
+    if(bar){
+        series.type="bar";
+        series.label={};
     }
     return series;
 }

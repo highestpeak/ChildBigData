@@ -64,7 +64,8 @@ function getAmapMap(VUE, containerId, mapConfig = null) {
  * @param {Array(Object{String text,[lot,lat] pos})} points 带有文字和坐标的点
  * @param {AMap.Map mapInstance} instance of Amap
  */
-function buildCircleValueMap(points, mapInstance, AMap, SimpleMarker) {
+function buildCircleValueMap(points, mapInstance, SimpleMarker) {
+    let AMap = window.AMap;
     var circleStyle =
         '<div style="width: 100%;">\
            <div style="width:70px;height:70px;\
@@ -73,9 +74,10 @@ function buildCircleValueMap(points, mapInstance, AMap, SimpleMarker) {
         </div>';
     var simpleMarkerList = []
     for (var i = 0; i < points.length; i += 1) {
+        var point = points[i];
         var currMarker = new SimpleMarker({
             iconLabel: {
-                innerHTML: '<div style="margin-top:15px;">' + points.text + '￥</div>',
+                innerHTML: '<div style="margin-top:15px;">' + point.text + '￥</div>',
                 style: {
                     color: "#f3c623"
                 }
@@ -85,7 +87,7 @@ function buildCircleValueMap(points, mapInstance, AMap, SimpleMarker) {
             offset: new AMap.Pixel(-15, -15),
             map: mapInstance,
             showPositionPoint: true,
-            position: points.pos
+            position: point.pos
         });
         simpleMarkerList.push(currMarker);
     }

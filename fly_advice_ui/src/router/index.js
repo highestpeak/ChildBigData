@@ -36,6 +36,11 @@ const routes = [
     component: () => import('../views/FlytoWhere.vue')
   },
   {
+    path: '/whenFly',
+    name: 'WhenFly',
+    component: () => import('../views/WhenFly.vue')
+  },
+  {
     path: '/chart',
     name: 'Chart',
     component: () => import('../views/ChartView.vue')
