@@ -2,13 +2,17 @@ package com.scu.highestpeak.child.fly_advice.controller;
 
 import com.scu.highestpeak.child.fly_advice.GlobalStaticFactory;
 import com.scu.highestpeak.child.fly_advice.service.AirportService;
+import com.scu.highestpeak.child.fly_advice.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +23,8 @@ import java.util.List;
 public class AirportController {
     @Autowired
     private AirportService airportService;
+    @Autowired
+    private HistoryService historyService;
 
     @GetMapping("/prefix")
     @Cacheable(cacheNames = {"prefixAirport"}, key = "#prefix")
@@ -26,4 +32,16 @@ public class AirportController {
         return airportService.airportContainsSubstr(prefix, GlobalStaticFactory.SUBSTR_PREFIX);
     }
 
+    @GetMapping("/analysis")
+    public Object analysisAirport(@NotBlank String airport){
+        return historyService.analysisAirport(airport);
+    }
+
+    @GetMapping("/analysis/timeOf")
+    public Object fromToCertainTime(
+            @NotBlank String airport,
+            @DateTimeFormat(pattern = "yyyyMMdd")@NotBlank Date time,
+            @NotBlank boolean from,@NotBlank boolean to){
+        return historyService.fromToCertainTime(airport,time,from,to);
+    }
 }

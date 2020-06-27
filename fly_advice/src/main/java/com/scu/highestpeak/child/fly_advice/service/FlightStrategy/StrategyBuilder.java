@@ -10,7 +10,7 @@ import java.util.Map;
  * @author highestpeak
  */
 public class StrategyBuilder {
-    private static Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap =
+    public static Map<FlightStrategy.STRATEGY, FlightStrategy> flightStrategyMap =
             new HashMap<FlightStrategy.STRATEGY, FlightStrategy>() {{
                 // 出发地、目的地、出发时间
                 put(FlightStrategy.STRATEGY.DIRECT, new DefaultDirectStrategy());

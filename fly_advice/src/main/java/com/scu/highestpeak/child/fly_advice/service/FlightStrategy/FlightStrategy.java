@@ -14,7 +14,8 @@ public interface FlightStrategy {
         DIRECT,
         ROUND_TRIP,
         TRANSFER,
-        ADVICE
+        ADVICE,
+        FLYWHERE
     }
 
     List<FlyPlan> strategy(Airport source, Airport destination, Date startDate, Date rtnDate);

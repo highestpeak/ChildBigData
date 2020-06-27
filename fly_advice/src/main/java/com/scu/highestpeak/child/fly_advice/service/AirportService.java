@@ -33,6 +33,10 @@ public class AirportService {
         return airportMapper.selectAirportByNameOrIATA(query);
     }
 
+    public List<Airport> searchHotAirport() {
+        return airportMapper.selectHotAirports();
+    }
+
     /**
      * future: 多种 contains type 可以一起起作用，那就是责任链？
      * 是否选用正则表达式 还是继续使用 like

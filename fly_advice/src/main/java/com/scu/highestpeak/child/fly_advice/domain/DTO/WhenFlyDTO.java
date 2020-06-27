@@ -1,14 +1,23 @@
 package com.scu.highestpeak.child.fly_advice.domain.DTO;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
  * @author highestpeak
  */
 public class WhenFlyDTO {
+    @NotBlank
     private String source;
+    @NotBlank
     private String destination;
+    @NotBlank
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date rangeStart;
+    @NotBlank
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date rangeEnd;
 
     public WhenFlyDTO(String source, String destination, Date rangeStart, Date rangeEnd) {

@@ -171,4 +171,18 @@ public class FlightService {
 
         return flyPlanList;
     }
+
+    public List<FlyPlan> whereFlySearch(final String airport,final Date start) {
+        FlightStrategy strategy =new FlyWhereStrategy();
+        Airport source = airportService.searchAirport(airport);
+        List<Airport> hotAirports = airportService.searchHotAirport();
+        List<Airport[]> airportPairList = hotAirports.stream()
+                .map(hot -> new Airport[]{source, hot})
+                .collect(Collectors.toList());
+        List<FlyPlan> collect = airportPairList.stream()
+                .map(pair -> generateFlyPlan(strategy, start, null, pair))
+                .map(flyPlanGroup -> flyPlanGroup.getFlyPlanList().iterator().next())
+                .collect(Collectors.toList());
+        return collect;
+    }
 }
