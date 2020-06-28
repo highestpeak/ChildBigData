@@ -1,0 +1,3225 @@
+{
+    "TRANSFER": [
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:50:00.000+00:00",
+                    "endTime": "2020-07-01T14:25:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "西安咸阳国际机场",
+                    "flight": {
+                        "airline": "浙江长龙航空",
+                        "flightNumber": "GJ8878",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T12:50:00.000+00:00",
+                        "end": "2020-07-01T14:25:00.000+00:00",
+                        "price": 288.0,
+                        "supplier": {
+                            "同城": 288.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T10:30:00.000+00:00",
+                    "endTime": "2020-07-01T13:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "西安咸阳国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH5092",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T10:30:00.000+00:00",
+                        "end": "2020-07-01T13:05:00.000+00:00",
+                        "price": 930.0,
+                        "supplier": {
+                            "同城": 930.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:50:00.000+00:00",
+                    "endTime": "2020-07-01T14:25:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "西安咸阳国际机场",
+                    "flight": {
+                        "airline": "浙江长龙航空",
+                        "flightNumber": "GJ8878",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T12:50:00.000+00:00",
+                        "end": "2020-07-01T14:25:00.000+00:00",
+                        "price": 288.0,
+                        "supplier": {
+                            "同城": 288.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:30:00.000+00:00",
+                    "endTime": "2020-07-01T06:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "西安咸阳国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5516",
+                        "aircraftModel": "空客A321-200(中)",
+                        "start": "2020-07-01T04:30:00.000+00:00",
+                        "end": "2020-07-01T06:50:00.000+00:00",
+                        "price": 892.0,
+                        "supplier": {
+                            "同城": 892.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:20:00.000+00:00",
+                    "endTime": "2020-07-01T06:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "西安咸阳国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH3863",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T05:20:00.000+00:00",
+                        "end": "2020-07-01T06:45:00.000+00:00",
+                        "price": 520.0,
+                        "supplier": {
+                            "同城": 520.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T10:30:00.000+00:00",
+                    "endTime": "2020-07-01T13:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "西安咸阳国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH5092",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T10:30:00.000+00:00",
+                        "end": "2020-07-01T13:05:00.000+00:00",
+                        "price": 930.0,
+                        "supplier": {
+                            "同城": 930.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:20:00.000+00:00",
+                    "endTime": "2020-07-01T06:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "西安咸阳国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH3863",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T05:20:00.000+00:00",
+                        "end": "2020-07-01T06:45:00.000+00:00",
+                        "price": 520.0,
+                        "supplier": {
+                            "同城": 520.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:30:00.000+00:00",
+                    "endTime": "2020-07-01T06:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "西安咸阳国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5516",
+                        "aircraftModel": "空客A321-200(中)",
+                        "start": "2020-07-01T04:30:00.000+00:00",
+                        "end": "2020-07-01T06:50:00.000+00:00",
+                        "price": 892.0,
+                        "supplier": {
+                            "同城": 892.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:50:00.000+00:00",
+                    "endTime": "2020-07-01T07:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "广州白云国际机场",
+                    "flight": {
+                        "airline": "厦门航空",
+                        "flightNumber": "MF1194",
+                        "aircraftModel": "空客A350-900(大)",
+                        "start": "2020-07-01T04:50:00.000+00:00",
+                        "end": "2020-07-01T07:20:00.000+00:00",
+                        "price": 280.0,
+                        "supplier": {
+                            "同城": 280.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:50:00.000+00:00",
+                    "endTime": "2020-07-01T05:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "广州白云国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "春秋航空",
+                        "flightNumber": "9C8836",
+                        "aircraftModel": "空客320_186",
+                        "start": "2020-07-01T02:50:00.000+00:00",
+                        "end": "2020-07-01T05:10:00.000+00:00",
+                        "price": 250.0,
+                        "supplier": {
+                            "同城": 250.0,
+                            "春秋航空": 250.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:50:00.000+00:00",
+                    "endTime": "2020-07-01T07:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "广州白云国际机场",
+                    "flight": {
+                        "airline": "厦门航空",
+                        "flightNumber": "MF1194",
+                        "aircraftModel": "空客A350-900(大)",
+                        "start": "2020-07-01T04:50:00.000+00:00",
+                        "end": "2020-07-01T07:20:00.000+00:00",
+                        "price": 280.0,
+                        "supplier": {
+                            "同城": 280.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:00:00.000+00:00",
+                    "endTime": "2020-07-01T05:25:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "广州白云国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU3158",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T03:00:00.000+00:00",
+                        "end": "2020-07-01T05:25:00.000+00:00",
+                        "price": 890.0,
+                        "supplier": {
+                            "同城": 890.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T14:30:00.000+00:00",
+                    "endTime": "2020-07-01T16:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "广州白云国际机场",
+                    "flight": {
+                        "airline": "厦门航空",
+                        "flightNumber": "MF1190",
+                        "aircraftModel": "32Q(中)",
+                        "start": "2020-07-01T14:30:00.000+00:00",
+                        "end": "2020-07-01T16:55:00.000+00:00",
+                        "price": 260.0,
+                        "supplier": {
+                            "同城": 260.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-02T03:00:00.000+00:00",
+                    "endTime": "2020-07-02T05:25:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "广州白云国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU3158",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-02T03:00:00.000+00:00",
+                        "end": "2020-07-02T05:25:00.000+00:00",
+                        "price": 890.0,
+                        "supplier": {
+                            "同城": 890.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T14:30:00.000+00:00",
+                    "endTime": "2020-07-01T16:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "广州白云国际机场",
+                    "flight": {
+                        "airline": "厦门航空",
+                        "flightNumber": "MF1190",
+                        "aircraftModel": "32Q(中)",
+                        "start": "2020-07-01T14:30:00.000+00:00",
+                        "end": "2020-07-01T16:55:00.000+00:00",
+                        "price": 260.0,
+                        "supplier": {
+                            "同城": 260.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-02T00:00:00.000+00:00",
+                    "endTime": "2020-07-02T02:25:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "广州白云国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU3155",
+                        "aircraftModel": "波音787-8(大)",
+                        "start": "2020-07-02T00:00:00.000+00:00",
+                        "end": "2020-07-02T02:25:00.000+00:00",
+                        "price": 890.0,
+                        "supplier": {
+                            "同城": 890.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:30:00.000+00:00",
+                    "endTime": "2020-07-01T06:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "厦门高崎国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4539",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T03:30:00.000+00:00",
+                        "end": "2020-07-01T06:20:00.000+00:00",
+                        "price": 327.1,
+                        "supplier": {
+                            "同城": 653.0,
+                            "Expedia": 327.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:55:00.000+00:00",
+                    "endTime": "2020-07-01T08:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "厦门高崎国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "春秋航空",
+                        "flightNumber": "9C8838",
+                        "aircraftModel": "空客320_186",
+                        "start": "2020-07-01T06:55:00.000+00:00",
+                        "end": "2020-07-01T08:45:00.000+00:00",
+                        "price": 260.0,
+                        "supplier": {
+                            "同城": 260.0,
+                            "春秋航空": 260.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:30:00.000+00:00",
+                    "endTime": "2020-07-01T06:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "厦门高崎国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4539",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T03:30:00.000+00:00",
+                        "end": "2020-07-01T06:20:00.000+00:00",
+                        "price": 327.1,
+                        "supplier": {
+                            "同城": 653.0,
+                            "Expedia": 327.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "厦门高崎国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Xiamen Airlines",
+                        "flightNumber": "MF8505",
+                        "aircraftModel": "Boeing 737-800",
+                        "start": "2020-07-01T09:00:00.000+00:00",
+                        "end": "2020-07-01T11:00:00.000+00:00",
+                        "price": 379.1,
+                        "supplier": {
+                            "同城": 330.0,
+                            "Expedia": 379.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:40:00.000+00:00",
+                    "endTime": "2020-07-01T06:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "厦门高崎国际机场",
+                    "flight": {
+                        "airline": "河北航空",
+                        "flightNumber": "NS8402",
+                        "aircraftModel": "波音787-8(大)",
+                        "start": "2020-07-01T03:40:00.000+00:00",
+                        "end": "2020-07-01T06:20:00.000+00:00",
+                        "price": 680.0,
+                        "supplier": {
+                            "同城": 680.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:55:00.000+00:00",
+                    "endTime": "2020-07-01T08:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "厦门高崎国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "春秋航空",
+                        "flightNumber": "9C8838",
+                        "aircraftModel": "空客320_186",
+                        "start": "2020-07-01T06:55:00.000+00:00",
+                        "end": "2020-07-01T08:45:00.000+00:00",
+                        "price": 260.0,
+                        "supplier": {
+                            "同城": 260.0,
+                            "春秋航空": 260.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "TRANSFER",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:40:00.000+00:00",
+                    "endTime": "2020-07-01T06:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "厦门高崎国际机场",
+                    "flight": {
+                        "airline": "河北航空",
+                        "flightNumber": "NS8402",
+                        "aircraftModel": "波音787-8(大)",
+                        "start": "2020-07-01T03:40:00.000+00:00",
+                        "end": "2020-07-01T06:20:00.000+00:00",
+                        "price": 680.0,
+                        "supplier": {
+                            "同城": 680.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                },
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "厦门高崎国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Xiamen Airlines",
+                        "flightNumber": "MF8505",
+                        "aircraftModel": "Boeing 737-800",
+                        "start": "2020-07-01T09:00:00.000+00:00",
+                        "end": "2020-07-01T11:00:00.000+00:00",
+                        "price": 379.1,
+                        "supplier": {
+                            "同城": 330.0,
+                            "Expedia": 379.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        }
+    ],
+    "DIRECT": [
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4535",
+                        "aircraftModel": "Airbus A330",
+                        "start": "2020-07-01T09:00:00.000+00:00",
+                        "end": "2020-07-01T11:55:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 374.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:50:00.000+00:00",
+                    "endTime": "2020-07-01T08:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5414",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T05:50:00.000+00:00",
+                        "end": "2020-07-01T08:55:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 420.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:35:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5412",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T04:35:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 470.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T07:25:00.000+00:00",
+                    "endTime": "2020-07-01T10:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5418",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-07-01T07:25:00.000+00:00",
+                        "end": "2020-07-01T10:10:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 500.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:10:00.000+00:00",
+                    "endTime": "2020-07-01T08:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5416",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T06:10:00.000+00:00",
+                        "end": "2020-07-01T08:50:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 500.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:15:00.000+00:00",
+                    "endTime": "2020-07-01T12:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5296",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T09:15:00.000+00:00",
+                        "end": "2020-07-01T12:00:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 420.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:40:00.000+00:00",
+                    "endTime": "2020-07-01T07:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "成都航空",
+                        "flightNumber": "EU7223",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T04:40:00.000+00:00",
+                        "end": "2020-07-01T07:30:00.000+00:00",
+                        "price": 2330.0,
+                        "supplier": {
+                            "同城": 2330.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:50:00.000+00:00",
+                    "endTime": "2020-07-01T08:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5674",
+                        "aircraftModel": "空客A321-200(中)",
+                        "start": "2020-07-01T05:50:00.000+00:00",
+                        "end": "2020-07-01T08:55:00.000+00:00",
+                        "price": 1070.0,
+                        "supplier": {
+                            "同城": 1070.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:35:00.000+00:00",
+                    "endTime": "2020-07-01T12:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6439",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T09:35:00.000+00:00",
+                        "end": "2020-07-01T12:20:00.000+00:00",
+                        "price": 1092.0,
+                        "supplier": {
+                            "同城": 1092.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6319",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T09:00:00.000+00:00",
+                        "end": "2020-07-01T11:55:00.000+00:00",
+                        "price": 1015.0,
+                        "supplier": {
+                            "同城": 1015.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T00:10:00.000+00:00",
+                    "endTime": "2020-07-01T02:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9331",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T00:10:00.000+00:00",
+                        "end": "2020-07-01T02:50:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:35:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5672",
+                        "aircraftModel": "空客A330(大)",
+                        "start": "2020-07-01T04:35:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 1070.0,
+                        "supplier": {
+                            "同城": 1070.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:50:00.000+00:00",
+                    "endTime": "2020-07-01T04:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5410",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-07-01T01:50:00.000+00:00",
+                        "end": "2020-07-01T04:50:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 460.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:25:00.000+00:00",
+                    "endTime": "2020-07-01T05:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV9865",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T02:25:00.000+00:00",
+                        "end": "2020-07-01T05:05:00.000+00:00",
+                        "price": 700.0,
+                        "supplier": {
+                            "同城": 700.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:50:00.000+00:00",
+                    "endTime": "2020-07-01T04:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5671",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T01:50:00.000+00:00",
+                        "end": "2020-07-01T04:50:00.000+00:00",
+                        "price": 1070.0,
+                        "supplier": {
+                            "同城": 1070.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T11:10:00.000+00:00",
+                    "endTime": "2020-07-01T13:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH5016",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T11:10:00.000+00:00",
+                        "end": "2020-07-01T13:40:00.000+00:00",
+                        "price": 1080.0,
+                        "supplier": {
+                            "同城": 1080.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:50:00.000+00:00",
+                    "endTime": "2020-07-01T04:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9334",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-07-01T01:50:00.000+00:00",
+                        "end": "2020-07-01T04:50:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:45:00.000+00:00",
+                    "endTime": "2020-07-01T12:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ8244",
+                        "aircraftModel": "AIRBUS INDUSTRIE A350-900",
+                        "start": "2020-07-01T09:45:00.000+00:00",
+                        "end": "2020-07-01T12:20:00.000+00:00",
+                        "price": 256.1,
+                        "supplier": {
+                            "同城": 520.0,
+                            "Expedia": 256.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:00:00.000+00:00",
+                    "endTime": "2020-07-01T03:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9333",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T01:00:00.000+00:00",
+                        "end": "2020-07-01T03:45:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:50:00.000+00:00",
+                    "endTime": "2020-07-01T08:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9338",
+                        "aircraftModel": "AIRBUS INDUSTRIE A350-900",
+                        "start": "2020-07-01T05:50:00.000+00:00",
+                        "end": "2020-07-01T08:55:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "海南航空",
+                        "flightNumber": "HU7408",
+                        "aircraftModel": "波音737-800(中)",
+                        "start": "2020-07-01T08:00:00.000+00:00",
+                        "end": "2020-07-01T11:00:00.000+00:00",
+                        "price": 335.0,
+                        "supplier": {
+                            "同城": 335.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:35:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9336",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T04:35:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5404",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:40:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 380.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:45:00.000+00:00",
+                    "endTime": "2020-07-01T11:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4501",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T08:45:00.000+00:00",
+                        "end": "2020-07-01T11:30:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 444.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T22:25:00.000+00:00",
+                    "endTime": "2020-07-01T01:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5402",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-06-30T22:25:00.000+00:00",
+                        "end": "2020-07-01T01:20:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 350.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4503",
+                        "aircraftModel": "Airbus A330",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:35:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 374.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:25:00.000+00:00",
+                    "endTime": "2020-07-01T08:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "春秋航空",
+                        "flightNumber": "9C8888",
+                        "aircraftModel": "空客320",
+                        "start": "2020-07-01T05:25:00.000+00:00",
+                        "end": "2020-07-01T08:05:00.000+00:00",
+                        "price": 370.0,
+                        "supplier": {
+                            "同城": 370.0,
+                            "春秋航空": 370.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:00:00.000+00:00",
+                    "endTime": "2020-07-01T03:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5408",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T01:00:00.000+00:00",
+                        "end": "2020-07-01T03:45:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 450.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:15:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA3218",
+                        "aircraftModel": "AIRBUS INDUSTRIE A320 SHARKLETS",
+                        "start": "2020-07-01T04:15:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 1290.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:50:00.000+00:00",
+                    "endTime": "2020-07-01T05:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU4637",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T02:50:00.000+00:00",
+                        "end": "2020-07-01T05:55:00.000+00:00",
+                        "price": 1030.0,
+                        "supplier": {
+                            "同城": 1030.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T00:10:00.000+00:00",
+                    "endTime": "2020-07-01T02:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5406",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T00:10:00.000+00:00",
+                        "end": "2020-07-01T02:50:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 440.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU4635",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:30:00.000+00:00",
+                        "price": 1030.0,
+                        "supplier": {
+                            "同城": 1030.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:15:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO1120",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T04:15:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 550.0,
+                        "supplier": {
+                            "同城": 550.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:35:00.000+00:00",
+                    "endTime": "2020-07-01T12:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U2577",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T09:35:00.000+00:00",
+                        "end": "2020-07-01T12:20:00.000+00:00",
+                        "price": 690.0,
+                        "supplier": {
+                            "同城": 690.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:55:00.000+00:00",
+                    "endTime": "2020-07-01T12:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU1081",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T09:55:00.000+00:00",
+                        "end": "2020-07-01T12:50:00.000+00:00",
+                        "price": 1030.0,
+                        "supplier": {
+                            "同城": 1030.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6307",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:35:00.000+00:00",
+                        "price": 1015.0,
+                        "supplier": {
+                            "同城": 1015.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "金鹏航空",
+                        "flightNumber": "Y87408",
+                        "aircraftModel": "波音737-800(中)",
+                        "start": "2020-07-01T08:00:00.000+00:00",
+                        "end": "2020-07-01T11:00:00.000+00:00",
+                        "price": 1610.0,
+                        "supplier": {
+                            "同城": 1610.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:00:00.000+00:00",
+                    "endTime": "2020-07-01T14:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5642",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T12:00:00.000+00:00",
+                        "end": "2020-07-01T14:40:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 420.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:50:00.000+00:00",
+                    "endTime": "2020-07-01T05:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "成都航空",
+                        "flightNumber": "EU7079",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T02:50:00.000+00:00",
+                        "end": "2020-07-01T05:55:00.000+00:00",
+                        "price": 2330.0,
+                        "supplier": {
+                            "同城": 2330.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:40:00.000+00:00",
+                    "endTime": "2020-07-01T07:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH3981",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T04:40:00.000+00:00",
+                        "end": "2020-07-01T07:30:00.000+00:00",
+                        "price": 1490.0,
+                        "supplier": {
+                            "同城": 1490.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T00:10:00.000+00:00",
+                    "endTime": "2020-07-01T02:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH4515",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T00:10:00.000+00:00",
+                        "end": "2020-07-01T02:45:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U8961",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:30:00.000+00:00",
+                        "price": 340.0,
+                        "supplier": {
+                            "同城": 340.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T00:10:00.000+00:00",
+                    "endTime": "2020-07-01T02:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5098",
+                        "aircraftModel": "空客A330-200(大)",
+                        "start": "2020-07-01T00:10:00.000+00:00",
+                        "end": "2020-07-01T02:50:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:35:00.000+00:00",
+                    "endTime": "2020-07-01T04:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH4513",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T01:35:00.000+00:00",
+                        "end": "2020-07-01T04:35:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:35:00.000+00:00",
+                    "endTime": "2020-07-01T04:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6311",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T01:35:00.000+00:00",
+                        "end": "2020-07-01T04:35:00.000+00:00",
+                        "price": 1015.0,
+                        "supplier": {
+                            "同城": 1015.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:35:00.000+00:00",
+                    "endTime": "2020-07-01T12:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "成都航空",
+                        "flightNumber": "EU6667",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T09:35:00.000+00:00",
+                        "end": "2020-07-01T12:20:00.000+00:00",
+                        "price": 320.0,
+                        "supplier": {
+                            "同城": 320.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T22:25:00.000+00:00",
+                    "endTime": "2020-07-01T01:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9327",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-06-30T22:25:00.000+00:00",
+                        "end": "2020-07-01T01:20:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:10:00.000+00:00",
+                    "endTime": "2020-07-01T14:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "上海航空",
+                        "flightNumber": "FM9550",
+                        "aircraftModel": "波音737-800(中)",
+                        "start": "2020-07-01T12:10:00.000+00:00",
+                        "end": "2020-07-01T14:45:00.000+00:00",
+                        "price": 410.0,
+                        "supplier": {
+                            "同城": 410.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T22:25:00.000+00:00",
+                    "endTime": "2020-07-01T01:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5094",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-06-30T22:25:00.000+00:00",
+                        "end": "2020-07-01T01:20:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T11:30:00.000+00:00",
+                    "endTime": "2020-07-01T14:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "中国国际航空",
+                        "flightNumber": "CA4591",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T11:30:00.000+00:00",
+                        "end": "2020-07-01T14:20:00.000+00:00",
+                        "price": 394.0,
+                        "supplier": {
+                            "同城": 394.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9329",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:40:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:35:00.000+00:00",
+                    "endTime": "2020-07-01T04:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4513",
+                        "aircraftModel": "Airbus A321",
+                        "start": "2020-07-01T01:35:00.000+00:00",
+                        "end": "2020-07-01T04:35:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 394.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T00:10:00.000+00:00",
+                    "endTime": "2020-07-01T02:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA4515",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T00:10:00.000+00:00",
+                        "end": "2020-07-01T02:45:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 414.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:25:00.000+00:00",
+                    "endTime": "2020-07-01T06:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5478",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T03:25:00.000+00:00",
+                        "end": "2020-07-01T06:05:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 470.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:15:00.000+00:00",
+                    "endTime": "2020-07-01T08:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO1098",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T06:15:00.000+00:00",
+                        "end": "2020-07-01T08:50:00.000+00:00",
+                        "price": 550.0,
+                        "supplier": {
+                            "同城": 550.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:55:00.000+00:00",
+                    "endTime": "2020-07-01T12:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U8969",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T09:55:00.000+00:00",
+                        "end": "2020-07-01T12:50:00.000+00:00",
+                        "price": 340.0,
+                        "supplier": {
+                            "同城": 340.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:45:00.000+00:00",
+                    "endTime": "2020-07-01T15:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6218",
+                        "aircraftModel": "空客A350-900(大)",
+                        "start": "2020-07-01T12:45:00.000+00:00",
+                        "end": "2020-07-01T15:30:00.000+00:00",
+                        "price": 1015.0,
+                        "supplier": {
+                            "同城": 1015.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T03:25:00.000+00:00",
+                    "endTime": "2020-07-01T06:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "春秋航空",
+                        "flightNumber": "9C6278",
+                        "aircraftModel": "空客320",
+                        "start": "2020-07-01T03:25:00.000+00:00",
+                        "end": "2020-07-01T06:10:00.000+00:00",
+                        "price": 370.0,
+                        "supplier": {
+                            "同城": 370.0,
+                            "春秋航空": 370.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:45:00.000+00:00",
+                    "endTime": "2020-07-01T15:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "上海航空",
+                        "flightNumber": "FM9552",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T12:45:00.000+00:00",
+                        "end": "2020-07-01T15:40:00.000+00:00",
+                        "price": 390.0,
+                        "supplier": {
+                            "同城": 390.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:45:00.000+00:00",
+                    "endTime": "2020-07-01T15:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU9552",
+                        "aircraftModel": "BOEING 787-9",
+                        "start": "2020-07-01T12:45:00.000+00:00",
+                        "end": "2020-07-01T15:40:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 390.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T07:35:00.000+00:00",
+                    "endTime": "2020-07-01T10:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U8965",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T07:35:00.000+00:00",
+                        "end": "2020-07-01T10:30:00.000+00:00",
+                        "price": 340.0,
+                        "supplier": {
+                            "同城": 340.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:15:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH5038",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T04:15:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 1080.0,
+                        "supplier": {
+                            "同城": 1080.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T07:35:00.000+00:00",
+                    "endTime": "2020-07-01T10:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "东方航空",
+                        "flightNumber": "MU1077",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T07:35:00.000+00:00",
+                        "end": "2020-07-01T10:30:00.000+00:00",
+                        "price": 1030.0,
+                        "supplier": {
+                            "同城": 1030.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:50:00.000+00:00",
+                    "endTime": "2020-07-01T05:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U8963",
+                        "aircraftModel": "空客A321(中)",
+                        "start": "2020-07-01T02:50:00.000+00:00",
+                        "end": "2020-07-01T05:55:00.000+00:00",
+                        "price": 370.0,
+                        "supplier": {
+                            "同城": 370.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:20:00.000+00:00",
+                    "endTime": "2020-07-01T07:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV6216",
+                        "aircraftModel": "空客A330-200(大)",
+                        "start": "2020-07-01T04:20:00.000+00:00",
+                        "end": "2020-07-01T07:20:00.000+00:00",
+                        "price": 1015.0,
+                        "supplier": {
+                            "同城": 1015.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:45:00.000+00:00",
+                    "endTime": "2020-07-01T15:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH1950",
+                        "aircraftModel": "空客A350-900(大)",
+                        "start": "2020-07-01T12:45:00.000+00:00",
+                        "end": "2020-07-01T15:30:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T02:25:00.000+00:00",
+                    "endTime": "2020-07-01T05:05:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH3733",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T02:25:00.000+00:00",
+                        "end": "2020-07-01T05:05:00.000+00:00",
+                        "price": 1490.0,
+                        "supplier": {
+                            "同城": 1490.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:35:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH4503",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:35:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:50:00.000+00:00",
+                    "endTime": "2020-07-01T04:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5101",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-07-01T01:50:00.000+00:00",
+                        "end": "2020-07-01T04:50:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:45:00.000+00:00",
+                    "endTime": "2020-07-01T11:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH4501",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T08:45:00.000+00:00",
+                        "end": "2020-07-01T11:30:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T01:00:00.000+00:00",
+                    "endTime": "2020-07-01T03:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5100",
+                        "aircraftModel": "空客A321-200(中)",
+                        "start": "2020-07-01T01:00:00.000+00:00",
+                        "end": "2020-07-01T03:45:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:45:00.000+00:00",
+                    "endTime": "2020-07-01T15:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA1950",
+                        "aircraftModel": "AIRBUS INDUSTRIE A350-900",
+                        "start": "2020-07-01T12:45:00.000+00:00",
+                        "end": "2020-07-01T15:30:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 354.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:00:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "祥鹏航空",
+                        "flightNumber": "8L7408",
+                        "aircraftModel": "波音737-800(中)",
+                        "start": "2020-07-01T08:00:00.000+00:00",
+                        "end": "2020-07-01T11:00:00.000+00:00",
+                        "price": 890.0,
+                        "supplier": {
+                            "同城": 890.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T23:40:00.000+00:00",
+                    "endTime": "2020-07-01T02:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5669",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-06-30T23:40:00.000+00:00",
+                        "end": "2020-07-01T02:40:00.000+00:00",
+                        "price": 1070.0,
+                        "supplier": {
+                            "同城": 1070.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-06-30T22:25:00.000+00:00",
+                    "endTime": "2020-07-01T01:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO5667",
+                        "aircraftModel": "空客A320(中)",
+                        "start": "2020-06-30T22:25:00.000+00:00",
+                        "end": "2020-07-01T01:20:00.000+00:00",
+                        "price": 1070.0,
+                        "supplier": {
+                            "同城": 1070.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T07:25:00.000+00:00",
+                    "endTime": "2020-07-01T10:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9342",
+                        "aircraftModel": "Airbus A320",
+                        "start": "2020-07-01T07:25:00.000+00:00",
+                        "end": "2020-07-01T10:10:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:35:00.000+00:00",
+                    "endTime": "2020-07-01T07:10:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5103",
+                        "aircraftModel": "空客A330(大)",
+                        "start": "2020-07-01T04:35:00.000+00:00",
+                        "end": "2020-07-01T07:10:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T11:10:00.000+00:00",
+                    "endTime": "2020-07-01T13:40:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "吉祥航空",
+                        "flightNumber": "HO1060",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T11:10:00.000+00:00",
+                        "end": "2020-07-01T13:40:00.000+00:00",
+                        "price": 500.0,
+                        "supplier": {
+                            "同城": 500.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:00:00.000+00:00",
+                    "endTime": "2020-07-01T10:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU5420",
+                        "aircraftModel": "Airbus A330-300",
+                        "start": "2020-07-01T08:00:00.000+00:00",
+                        "end": "2020-07-01T10:50:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 400.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:10:00.000+00:00",
+                    "endTime": "2020-07-01T08:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9340",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T06:10:00.000+00:00",
+                        "end": "2020-07-01T08:50:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T05:50:00.000+00:00",
+                    "endTime": "2020-07-01T08:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "四川航空",
+                        "flightNumber": "3U5105",
+                        "aircraftModel": "空客A321-200(中)",
+                        "start": "2020-07-01T05:50:00.000+00:00",
+                        "end": "2020-07-01T08:55:00.000+00:00",
+                        "price": 1050.0,
+                        "supplier": {
+                            "同城": 1050.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T06:15:00.000+00:00",
+                    "endTime": "2020-07-01T08:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH5026",
+                        "aircraftModel": "波音787-9(大)",
+                        "start": "2020-07-01T06:15:00.000+00:00",
+                        "end": "2020-07-01T08:50:00.000+00:00",
+                        "price": 1080.0,
+                        "supplier": {
+                            "同城": 1080.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T12:10:00.000+00:00",
+                    "endTime": "2020-07-01T14:45:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Eastern Airlines",
+                        "flightNumber": "MU9550",
+                        "aircraftModel": "Boeing 737",
+                        "start": "2020-07-01T12:10:00.000+00:00",
+                        "end": "2020-07-01T14:45:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 410.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T08:00:00.000+00:00",
+                    "endTime": "2020-07-01T10:50:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "China Southern Airlines",
+                        "flightNumber": "CZ9344",
+                        "aircraftModel": "BOEING 777-300ER",
+                        "start": "2020-07-01T08:00:00.000+00:00",
+                        "end": "2020-07-01T10:50:00.000+00:00",
+                        "price": 754.1,
+                        "supplier": {
+                            "同城": 1280.0,
+                            "Expedia": 754.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T09:00:00.000+00:00",
+                    "endTime": "2020-07-01T11:55:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH4535",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T09:00:00.000+00:00",
+                        "end": "2020-07-01T11:55:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:20:00.000+00:00",
+                    "endTime": "2020-07-01T07:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "Air China",
+                        "flightNumber": "CA1948",
+                        "aircraftModel": "Airbus A330-200",
+                        "start": "2020-07-01T04:20:00.000+00:00",
+                        "end": "2020-07-01T07:20:00.000+00:00",
+                        "price": 337.1,
+                        "supplier": {
+                            "同城": 394.0,
+                            "Expedia": 337.1
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:40:00.000+00:00",
+                    "endTime": "2020-07-01T07:30:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "西藏航空",
+                        "flightNumber": "TV9881",
+                        "aircraftModel": "空客A330-300(大)",
+                        "start": "2020-07-01T04:40:00.000+00:00",
+                        "end": "2020-07-01T07:30:00.000+00:00",
+                        "price": 410.0,
+                        "supplier": {
+                            "同城": 410.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        },
+        {
+            "strategy": "DIRECT",
+            "flightSections": [
+                {
+                    "order": 0,
+                    "segmentType": "line",
+                    "startTime": "2020-07-01T04:20:00.000+00:00",
+                    "endTime": "2020-07-01T07:20:00.000+00:00",
+                    "score": 0,
+                    "description": "",
+                    "startPlace": "成都双流国际机场",
+                    "endPlace": "上海虹桥国际机场",
+                    "flight": {
+                        "airline": "深圳航空",
+                        "flightNumber": "ZH1948",
+                        "aircraftModel": "空客A330-200(大)",
+                        "start": "2020-07-01T04:20:00.000+00:00",
+                        "end": "2020-07-01T07:20:00.000+00:00",
+                        "price": 950.0,
+                        "supplier": {
+                            "同城": 950.0
+                        }
+                    },
+                    "remainingVotes": null,
+                    "cabinClass": null
+                }
+            ],
+            "score": 0
+        }
+    ]
+}
