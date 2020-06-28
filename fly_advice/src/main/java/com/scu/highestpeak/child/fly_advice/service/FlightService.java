@@ -181,6 +181,8 @@ public class FlightService {
                 .collect(Collectors.toList());
         List<FlyPlan> collect = airportPairList.stream()
                 .map(pair -> generateFlyPlan(strategy, start, null, pair))
+                .filter(flyPlanGroup -> flyPlanGroup.getFlyPlanList()!=null)
+                .filter(flyPlanGroup -> flyPlanGroup.getFlyPlanList().size()>0)
                 .map(flyPlanGroup -> flyPlanGroup.getFlyPlanList().iterator().next())
                 .collect(Collectors.toList());
         return collect;

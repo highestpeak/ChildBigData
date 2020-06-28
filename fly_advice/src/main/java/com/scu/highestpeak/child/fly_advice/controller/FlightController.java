@@ -68,8 +68,8 @@ public class FlightController {
     }
 
     @GetMapping("/history/data")
-    public Object historyOfSpecificFlight(@NotBlank String flightNumber){
-        return historyService.historyOfSpecificFlight(flightNumber);
+    public Object historyOfSpecificFlight(@NotBlank String src,@NotBlank String dst){
+        return historyService.historyOfSpecificFlight(src,dst);
     }
 
     @GetMapping("/cabinClass")

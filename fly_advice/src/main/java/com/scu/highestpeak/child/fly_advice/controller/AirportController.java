@@ -36,12 +36,4 @@ public class AirportController {
     public Object analysisAirport(@NotBlank String airport){
         return historyService.analysisAirport(airport);
     }
-
-    @GetMapping("/analysis/timeOf")
-    public Object fromToCertainTime(
-            @NotBlank String airport,
-            @DateTimeFormat(pattern = "yyyyMMdd")@NotBlank Date time,
-            @NotBlank boolean from,@NotBlank boolean to){
-        return historyService.fromToCertainTime(airport,time,from,to);
-    }
 }

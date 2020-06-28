@@ -64,6 +64,8 @@ public class SpiderFlight {
                 System.out.println("InterruptedException");
             } catch (ExecutionException e) {
                 System.out.println("ExecutionException");
+            } catch (Exception e){
+                System.out.println("UNKNOWN Exception");
             }
         }
         return new ArrayList<>(codeFlightMap.values());
